@@ -2,14 +2,14 @@
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Carousel Template · Bootstrap</title>
+    <title>STEM Science Fair Training</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap.css" rel="stylesheet">
-    <link href="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-responsive.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap-responsive.css" rel="stylesheet">
     <style>
 
     /* GLOBAL STYLES
@@ -20,9 +20,18 @@
       padding-bottom: 0;
       color: #000000;
       background-image:url('1.jpg');
-         background-color:Black;
+         background-color:#F8F9CA;
     }
+    
 
+    #nbar {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 850px;
+    }
 
 
     /* CUSTOMIZE THE NAVBAR
@@ -222,19 +231,21 @@
 
     <!-- NAVBAR
     ================================================== -->
+    <SCRIPT LANGUAGE="JAVASCRIPT"></SCRIPT>
     <div class="navbar-wrapper">
       <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
-      <div class="container">
+      <!--<div class="container">-->
 
         <div class="navbar navbar-inverse">
           <div class="navbar-inner">
+          <div id="nbar">
             <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="home.htm">Science Fair Learning Place!</a>
+            <a class="brand" href="home.htm">Regioinal Science and Engineering Challenge!</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav">
@@ -266,7 +277,7 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
         </div><!-- /.navbar -->
-
+        </div>
       </div> <!-- /.container -->
     </div><!-- /.navbar-wrapper -->
 
@@ -275,24 +286,36 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
 
     <!-- Carousel
     ================================================== -->
+	<div id="page">
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/1.jpg" alt="">-->
+          <!--<img src="bootstrap/1.jpg" alt="">-->
           <div class="container">
           <object data=questionOne.htm width="1170 " height="480"> 
                 <embed src=questionOne.htm width="1170" height="480"> 
           </embed> Error: Embedded data could not be displayed. </object>
               <div class="progress progress-striped active" style="margin-top: 0px;">
-                  <div class="bar" style="width: 33%;"></div>
+                  <div class="bar" style="width: 1%;"></div>
               </div>  
           </div>
         </div>
         <div class="item">
-          <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/2.jpg" alt="">-->
+          <!--<img src="bootstrap/2.jpg" alt="">-->
           <div class="container">
           <object data=questionTwo.htm width="1170 " height="480"> 
                 <embed src=questionTwo.htm width="1170" height="480"> 
+          </embed> Error: Embedded data could not be displayed. </object>
+          <div class="progress progress-striped active" style="margin-top: 0px;">
+              <div class="bar" style="width: 33%;"></div>
+          </div>  
+          </div>
+        </div>
+        <div class="item">  
+          <!--<img src="bootstrap/3.jpg" alt="">-->
+          <div class="container">
+          <object data=questionThree.htm width="1170 " height="480"> 
+                <embed src=questionThree.htm width="1170" height="480"> 
           </embed> Error: Embedded data could not be displayed. </object>
           <div class="progress progress-striped active" style="margin-top: 0px;">
               <div class="bar" style="width: 66%;"></div>
@@ -300,10 +323,10 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
           </div>
         </div>
         <div class="item">  
-          <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/3.jpg" alt="">-->
+          <!--<img src="bootstrap/3.jpg" alt="">-->
           <div class="container">
-          <object data=questionThree.htm width="1170 " height="480"> 
-                <embed src=questionThree.htm width="1170" height="480"> 
+          <object data=testEnd.htm width="1170 " height="480"> 
+                <embed src=testEnd.htm width="1170" height="480"> 
           </embed> Error: Embedded data could not be displayed. </object>
           <div class="progress progress-striped active" style="margin-top: 0px;">
               <div class="bar" style="width: 100%;"></div>
@@ -311,74 +334,48 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
           </div>
         </div>
       </div>
+	</div>
+<!--
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+-->
+
     </div><!-- /.carousel -->
+    <a href="#myCarousel" data-slide="prev" style="margin-left: 1000px;" class="btn btn-large btn-primary" href="#">Previous</a>
+    <a href="#myCarousel" data-slide="next"  class="btn btn-large btn-primary" href="#">Next</a>
 
     
 
 
 
-     <!-- <div class="featurette">
-        <img class="featurette-image pull-right" src="Carousel%20Template%20%C2%B7%20Bootstrap_files/browser-icon-chrome.png">
-        <h2 class="featurette-heading">First featurette headling. <span class="muted">It'll blow your mind.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor 
-fringilla. Vestibulum id ligula porta felis euismod semper. Praesent 
-commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, 
-tellus ac cursus commodo.</p>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="featurette">
-        <img class="featurette-image pull-left" src="Carousel%20Template%20%C2%B7%20Bootstrap_files/browser-icon-firefox.png">
-        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor 
-fringilla. Vestibulum id ligula porta felis euismod semper. Praesent 
-commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, 
-tellus ac cursus commodo.</p>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="featurette">
-        <img class="featurette-image pull-right" src="Carousel%20Template%20%C2%B7%20Bootstrap_files/browser-icon-safari.png">
-        <h2 class="featurette-heading">And lastly, this one. <span class="muted">Checkmate.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor 
-fringilla. Vestibulum id ligula porta felis euismod semper. Praesent 
-commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, 
-tellus ac cursus commodo.</p>
-      </div>-->
 
 
 
 
-
-    <!-- Le javascript
+    <!-- javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/jquery.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-transition.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-alert.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-modal.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-dropdown.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-scrollspy.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-tab.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-tooltip.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-popover.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-button.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-collapse.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-carousel.js"></script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-typeahead.js"></script>
+    <script src="bootstrap/jquery.js"></script>
+    <script src="bootstrap/bootstrap-transition.js"></script>
+    <script src="bootstrap/bootstrap-alert.js"></script>
+    <script src="bootstrap/bootstrap-modal.js"></script>
+    <script src="bootstrap/bootstrap-dropdown.js"></script>
+    <script src="bootstrap/bootstrap-scrollspy.js"></script>
+    <script src="bootstrap/bootstrap-tab.js"></script>
+    <script src="bootstrap/bootstrap-tooltip.js"></script>
+    <script src="bootstrap/bootstrap-popover.js"></script>
+    <script src="bootstrap/bootstrap-button.js"></script>
+    <script src="bootstrap/bootstrap-collapse.js"></script>
+    <script src="bootstrap/bootstrap-carousel.js"></script>
+    <script src="bootstrap/bootstrap-typeahead.js"></script>
     <script>
         !function ($) {
-            $(function () {
-                // carousel demo
+            $(function () {//twirl the caroslel
                 $('#myCarousel').carousel()
             })
         } (window.jQuery)
     </script>
-    <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/holder.js"></script>
+    <script src="bootstrap/holder.js"></script>
   
 
 </body></html>

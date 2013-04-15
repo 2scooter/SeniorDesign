@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 	<html>
-		<body bgcolor="#ffffff">
+		<body bgcolor="#F8F98F">
 <h1>Question 1</h1>
 
-<p id="demo">
-    What should you do when you see a bad project?
+<p>
+    1.	When introducing yourself to the student, you should?
 </p>
 
-<script>
-function myFunction()
-{
-    document.getElementById("answer").innerHTML="YUP!";
-}
 
-function otherFunciton()
-{
-    document.getElementById("answer").innerHTML="NOPE!";
-}
+<script type="text/javascript">
+    function setColor(answer) {
+        if (answer == 1) {
+            Question1.style.backgroundColor = "Teal";
+            Question2.style.backgroundColor = "";
+            Question3.style.backgroundColor = "";
+        }
+        else if (answer == 2) {
+            Question1.style.backgroundColor = "";
+            Question2.style.backgroundColor = "Teal";
+            Question3.style.backgroundColor = "";
+        }
+        else if (answer == 3) {
+            Question1.style.backgroundColor = "";
+            Question2.style.backgroundColor = "";
+            Question3.style.backgroundColor = "Teal";
+        }
+        else {
+            Question1.style.backgroundColor = "";
+            Question2.style.backgroundColor = "";
+            Question3.style.backgroundColor = "";
+        }
+    }
 </script>
 
-<button type="button" onclick="otherFunciton()">Throw Clipboard</button>
-<button type="button" onclick="otherFunciton()">Yell</button>
-<button type="button" onclick="myFunction()">Say nothing</button>
-<button type="button" onclick="otherFunciton()">Punch them</button>
+<div><button id="Question1" type="button" onclick="setColor(1)">(A)</button>Use your full name and title(s) to emphasize your expertise</div>
+<div><button id="Question2" type="button" onclick="setColor(2)">(B)</button>Warmly greet the student, introduce yourself by first and last name, and express an interest in his/her project</div>
+<div><button id="Question3" type="button" onclick="setColor(3)">(C)</button>Greet the student casually, then let him/her know that you would like the process to move quickly so you can leave.</div>
+                                                        
 
-<p id="answer"> 
-</p>
+
+
+
+
 	</body>
 </html>

@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<?php
+session_start();
+?>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Carousel Template · Bootstrap</title>
+    <title>Carousel Template � Bootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -213,11 +216,7 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.png">
+
   <style type="text/css" id="holderjs-style">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style></head>
 
   <body>
@@ -238,16 +237,16 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="home.htm">Science Fair Learning Place!</a>
+            <a class="brand" href="home.php">Science Fair Learning Place!</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li><a href="home.htm">Home</a></li>
-                <li class="active"><a href="Presentation.htm">Presentation</a></li>
-                <li><a href="Test.htm">Test</a></li>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="Presentation.php">Presentation</a></li>
+                <li class="active"><a href="Test.php">Test</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-                <li class="dropdown">
+                <!--<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="#">Action</a></li>
@@ -258,21 +257,21 @@
                     <li><a href="#">Separated link</a></li>
                     <li><a href="#">One more separated link</a></li>
                   </ul>
-                </li>
-		<li><a href="https://accounts.google.com/o/oauth2/auth?
-scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
-state=%2Fprofile&
-redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&
-response_type=token&
-client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
-		<li><a href="/*   */">Account</a></li>
-              </ul>
+                </li>-->
+<li>
+		<?php if($_SESSION['name'] == "") : ?>
+		<a class="janrainEngage" href="#">Login</a></li>
+		<?php else : ?>
+		<a href ="logout.php">Logout</a></li>
+		<?php endif; ?>
+		       </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
         </div><!-- /.navbar -->
 
       </div> <!-- /.container -->
     </div><!-- /.navbar-wrapper -->
+
 
 
 
@@ -283,8 +282,8 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
         <div class="item active">
           <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/1.jpg" alt="">-->
           <div class="container">
-          <object data=simpleSub.htm width="1170 " height="480"> 
-                <embed src=simpleSub.htm width="1170" height="480"> 
+          <object data=questionOne.htm width="1170 " height="480"> 
+                <embed src=questionOne.htm width="1170" height="480"> 
           </embed> Error: Embedded data could not be displayed. </object>
               <div class="progress progress-striped active" style="margin-top: 0px;">
                   <div class="bar" style="width: 33%;"></div>
@@ -294,8 +293,8 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
         <div class="item">
           <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/2.jpg" alt="">-->
           <div class="container">
-          <object data=youtubeSub.htm width="1170 " height="480"> 
-                <embed src=youtubeSub.htm width="1170" height="480"> 
+          <object data=questionTwo.htm width="1170 " height="480"> 
+                <embed src=questionTwo.htm width="1170" height="480"> 
           </embed> Error: Embedded data could not be displayed. </object>
           <div class="progress progress-striped active" style="margin-top: 0px;">
               <div class="bar" style="width: 66%;"></div>
@@ -305,8 +304,8 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
         <div class="item">  
           <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/3.jpg" alt="">-->
           <div class="container">
-          <object data=subpage.htm width="1170 " height="480"> 
-                <embed src=subpage.htm width="1170" height="480"> 
+          <object data=questionThree.htm width="1170 " height="480"> 
+                <embed src=questionThree.htm width="1170" height="480"> 
           </embed> Error: Embedded data could not be displayed. </object>
           <div class="progress progress-striped active" style="margin-top: 0px;">
               <div class="bar" style="width: 100%;"></div>
@@ -314,8 +313,8 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
           </div>
         </div>
       </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
 
     
@@ -382,6 +381,35 @@ tellus ac cursus commodo.</p>
         } (window.jQuery)
     </script>
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/holder.js"></script>
+<!--
+MATT'S LOGIN STUFF!
+-->
+<script type="text/javascript">
+(function() {
+    if (typeof window.janrain !== 'object') window.janrain = {};
+    if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+    
+    janrain.settings.tokenUrl = 'http://localhost/home.php';
+
+    function isReady() { janrain.ready = true; };
+    if (document.addEventListener) {
+      document.addEventListener("DOMContentLoaded", isReady, false);
+    } else {
+      window.attachEvent('onload', isReady);
+    }
+
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.id = 'janrainAuthWidget';
+    if (document.location.protocol === 'https:') {
+      e.src = 'https://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+    } else {
+      e.src = 'http://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+    }
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(e, s);
+})();
+</script>
   
 
 </body></html>

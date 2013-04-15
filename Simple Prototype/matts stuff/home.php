@@ -1,8 +1,126 @@
-﻿<!DOCTYPE html>
+<!--
+Matt's PHP stuff - START
+-->
+<?php
+session_start();
+/*
+ * This script is intended as an educational tool.
+ * Please look at the PHP SDK if you are looking for somthing suited to a new project.
+ * https://github.com/janrain/Janrain-Sample-Code/tree/master/php/janrain-engage-php-sdk
+ */
+
+ob_start();
+/*
+ Below is a very simple and verbose PHP 5 script that implements the Engage token URL processing and some popular Pro/Enterprise examples.
+ The code below assumes you have the CURL HTTP fetching library with SSL.  
+*/
+
+// PATH_TO_API_KEY_FILE should contain a path to a plain text file containing only
+// your API key. This file should exist in a path that can be read by your web server,
+// but not publicly accessible to the Internet.
+$rpx_api_key = "6f7db617b7e06dd9497f089bee3d72648e03bbcd";
+
+/*
+ Set this to true if your application is Pro or Enterprise.
+ Set this to false if your application is Basic or Plus.
+*/
+$engage_pro = false;
+
+/* STEP 1: Extract token POST parameter */
+$token = $_POST['token'];
+
+//Some output to help debugging
+/*
+echo "SERVER VARIABLES:\n";
+var_dump($_SERVER);
+echo "HTTP POST ARRAY:\n";
+var_dump($_POST);
+*/
+
+if(strlen($token) == 40) {//test the length of the token; it should be 40 characters
+
+  /* STEP 2: Use the token to make the auth_info API call */
+  $post_data = array('token'  => $token,
+                     'apiKey' => $rpx_api_key,
+                     'format' => 'json',
+                     'extended' => 'false'); //Extended is not available to Basic.
+
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_URL, 'https://rpxnow.com/api/v2/auth_info');
+  curl_setopt($curl, CURLOPT_POST, true);
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+  curl_setopt($curl, CURLOPT_HEADER, false);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($curl, CURLOPT_FAILONERROR, true);
+  $result = curl_exec($curl);
+  if ($result == false){
+    echo "\n".'Curl error: ' . curl_error($curl);
+    echo "\n".'HTTP code: ' . curl_errno($curl);
+    echo "\n"; var_dump($post_data);
+  }
+  curl_close($curl);
+
+
+  /* STEP 3: Parse the JSON auth_info response */
+  $auth_info = json_decode($result, true);
+
+  if ($auth_info['stat'] == 'ok') {
+	/*
+    echo "\n auth_info:";
+    echo "\n"; var_dump($auth_info);
+	*/
+    $profile = $auth_info[profile];
+    $email = $profile[email];
+    $identifier = $profile[identifier];
+$identifier = trim($identifier,"https://www.google.com/profiles/");
+    $_SESSION['name'] = $identifier;
+    $displayname = $profile[displayname];
+
+    // DATABASE STUFF GOES HERE ===============================
+
+$con=mysqli_connect("localhost","root","htam91","users");
+$result = mysqli_query($con,"SELECT * FROM customers
+WHERE accountid = '$identifier'");
+if($result->num_rows > 0)
+{
+}
+else
+{
+mysqli_query($con,"INSERT INTO customers (accountid, email, accesslvl, testprogress, testscore, trainingprogress)
+VALUES ('$identifier','$email',0, 0,0,0)");
+}
+
+mysqli_close($con);
+
+    // END DATABASE STUFF =====================================
+    
+
+    } else {
+      // Gracefully handle auth_info error.  Hook this into your native error handling system.
+      echo "\n".'An error occured: ' . $auth_info['err']['msg']."\n";
+      var_dump($auth_info);
+      echo "\n";
+      var_dump($result);
+    }
+}else{
+  // Gracefully handle the missing or malformed token.  Hook this into your native error handling system.
+  echo 'Authentication canceled.';
+}
+$debug_out = ob_get_contents();
+ob_end_clean();
+?>
+
+<!--
+----------------------------Matt's PHP stuff - END
+-->
+
+<!DOCTYPE html>
+
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Carousel Template · Bootstrap</title>
+    <title>Carousel Template � Bootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -28,7 +146,7 @@
     /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
 
-    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    /* Special class on .con    tainer surrounding .navbar, used for positioning it into place. */
     .navbar-wrapper {
       position: absolute;
       top: 0;
@@ -98,10 +216,9 @@
       height: 500px;
     }
     .carousel img {
-      position: absolute;
-      top: 0px ;
-      left: 0;
-      min-width: 100%;
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
       height: 500px;
     }
 
@@ -213,7 +330,11 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.png">
   <style type="text/css" id="holderjs-style">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style></head>
 
   <body>
@@ -234,16 +355,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="home.htm">Science Fair Learning Place!</a>
+            <a class="brand" href="home.php">Science Fair Learning Place!</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li><a href="home.htm">Home</a></li>
-                <li><a href="Presentation.htm">Presentation</a></li>
-                <li class="active"><a href="Test.htm">Test</a></li>
+                <li class="active"><a href="home.php">Home</a></li>
+                <li><a href="Presentation.php">Presentation</a></li>
+                <li><a href="Test.php">Test</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-                <li class="dropdown">
+                <!--<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="#">Action</a></li>
@@ -254,14 +374,13 @@
                     <li><a href="#">Separated link</a></li>
                     <li><a href="#">One more separated link</a></li>
                   </ul>
-                </li>
-		<li><a href="https://accounts.google.com/o/oauth2/auth?
-scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
-state=%2Fprofile&
-redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&
-response_type=token&
-client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
-		<li><a href="/*   */">Account</a></li>
+                </li>-->
+		<li>
+		<?php if($_SESSION['name'] == "") : ?>
+		<a class="janrainEngage" href="#">Login</a></li>
+		<?php else : ?>
+		<a href ="logout.php">Logout</a>
+		<?php endif; ?>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
@@ -272,47 +391,42 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
 
 
 
-
     <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/1.jpg" alt="">-->
+
+		
+<center><h1><font color = "white">
+<?php 
+if($_SESSION['name'] != "")
+{
+echo "Welcome to the site, ". $_SESSION['name'];
+} ?>
+</font></h1></center>
+
+		<image src="home1.jpg" alt ="">
+
           <div class="container">
-          <object data=questionOne.htm width="1170 " height="480"> 
-                <embed src=questionOne.htm width="1170" height="480"> 
-          </embed> Error: Embedded data could not be displayed. </object>
-              <div class="progress progress-striped active" style="margin-top: 0px;">
-                  <div class="bar" style="width: 33%;"></div>
-              </div>  
           </div>
         </div>
         <div class="item">
-          <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/2.jpg" alt="">-->
+          <img src="home2.jpg" alt="">
           <div class="container">
-          <object data=questionTwo.htm width="1170 " height="480"> 
-                <embed src=questionTwo.htm width="1170" height="480"> 
-          </embed> Error: Embedded data could not be displayed. </object>
-          <div class="progress progress-striped active" style="margin-top: 0px;">
-              <div class="bar" style="width: 66%;"></div>
-          </div>  
           </div>
         </div>
         <div class="item">  
-          <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/3.jpg" alt="">-->
+          <img src="home3.jpg" alt="">
           <div class="container">
-          <object data=questionThree.htm width="1170 " height="480"> 
-                <embed src=questionThree.htm width="1170" height="480"> 
+          <object data=subpage.htm width="1170 " height="480"> 
+                <embed src=subpage.htm width="1170" height="480"> 
           </embed> Error: Embedded data could not be displayed. </object>
-          <div class="progress progress-striped active" style="margin-top: 0px;">
-              <div class="bar" style="width: 100%;"></div>
-          </div>  
           </div>
         </div>
       </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+      <a class ="carousel-control" href="#myCarousel" data-slide="prev"> &lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
 
     
@@ -354,7 +468,7 @@ tellus ac cursus commodo.</p>
 
 
 
-    <!-- Le javascript
+    <!-- The Javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/jquery.js"></script>
@@ -371,14 +485,44 @@ tellus ac cursus commodo.</p>
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-carousel.js"></script>
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-typeahead.js"></script>
     <script>
-        !function ($) {
-            $(function () {
-                // carousel demo
-                $('#myCarousel').carousel()
-            })
-        } (window.jQuery)
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
     </script>
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/holder.js"></script>
-  
+
+
+<!--
+MATT'S LOGIN STUFF!
+-->
+<script type="text/javascript">
+(function() {
+    if (typeof window.janrain !== 'object') window.janrain = {};
+    if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+    
+    janrain.settings.tokenUrl = 'http://localhost/home.php';
+
+    function isReady() { janrain.ready = true; };
+    if (document.addEventListener) {
+      document.addEventListener("DOMContentLoaded", isReady, false);
+    } else {
+      window.attachEvent('onload', isReady);
+    }
+
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.id = 'janrainAuthWidget';
+    if (document.location.protocol === 'https:') {
+      e.src = 'https://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+    } else {
+      e.src = 'http://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+    }
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(e, s);
+})();
+</script>
 
 </body></html>

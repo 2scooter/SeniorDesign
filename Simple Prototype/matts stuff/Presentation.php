@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<?php
+session_start();
+?>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Carousel Template · Bootstrap</title>
+    <title>Carousel Template � Bootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -28,7 +31,7 @@
     /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
 
-    /* Special class on .con    tainer surrounding .navbar, used for positioning it into place. */
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
     .navbar-wrapper {
       position: absolute;
       top: 0;
@@ -98,7 +101,7 @@
       height: 500px;
     }
     .carousel img {
-      position:relative;
+      position: absolute;
       top: 0px ;
       left: 0;
       min-width: 100%;
@@ -186,7 +189,6 @@
       }
       .carousel img {
         height: 300px;
-	width: 300px;
       }
       .carousel-caption {
         width: 65%;
@@ -239,13 +241,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="home.htm">Science Fair Learning Place!</a>
+            <a class="brand" href="home.php">Science Fair Learning Place!</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li class="active"><a href="home.htm">Home</a></li>
-                <li><a href="Presentation.htm">Presentation</a></li>
-                <li><a href="Test.htm">Test</a></li>
+                <li><a href="home.php">Home</a></li>
+                <li class="active"><a href="Presentation.php">Presentation</a></li>
+                <li><a href="Test.php">Test</a></li>
+                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <!--<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -259,13 +262,12 @@
                     <li><a href="#">One more separated link</a></li>
                   </ul>
                 </li>-->
-		<li><a href="https://accounts.google.com/o/oauth2/auth?
-scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
-state=%2Fprofile&
-redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&
-response_type=token&
-client_id=812741506391.apps.googleusercontent.com">Login</a></li>
-		<li><a href="/*   */">Register</a></li>
+		<li>
+		<?php if($_SESSION['name'] == "") : ?>
+		<a class="janrainEngage" href="#">Login</a></li>
+		<?php else : ?>
+		<a href ="logout.php">Logout</a></li>
+		<?php endif; ?>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
@@ -281,18 +283,26 @@ client_id=812741506391.apps.googleusercontent.com">Login</a></li>
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <img src="home1.jpg" alt="">
+          <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/1.jpg" alt="">-->
           <div class="container">
-         <!-- <object data=simpleSub.htm width="1170 " height="480"> 
+	     <h1><center><font color = "white">
+		<?php 		
+		if($_SESSION['name'] != "")
+		{
+		echo "Welcome again, ". $_SESSION['name'];
+		}
+		?>
+		</font></center></h1>
+          <object data=simpleSub.htm width="1170 " height="380"> 
                 <embed src=simpleSub.htm width="1170" height="480"> 
-          </embed> Error: Embedded data could not be displayed. </object>-->
+          </embed> Error: Embedded data could not be displayed. </object>
               <div class="progress progress-striped active" style="margin-top: 0px;">
                   <div class="bar" style="width: 33%;"></div>
               </div>  
           </div>
         </div>
         <div class="item">
-          <img src="home2.jpg" alt="">
+          <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/2.jpg" alt="">-->
           <div class="container">
           <object data=youtubeSub.htm width="1170 " height="480"> 
                 <embed src=youtubeSub.htm width="1170" height="480"> 
@@ -303,7 +313,7 @@ client_id=812741506391.apps.googleusercontent.com">Login</a></li>
           </div>
         </div>
         <div class="item">  
-          <img src="home3.jpg" alt="">
+          <!--<img src="Carousel%20Template%20%C2%B7%20Bootstrap_files/3.jpg" alt="">-->
           <div class="container">
           <object data=subpage.htm width="1170 " height="480"> 
                 <embed src=subpage.htm width="1170" height="480"> 
@@ -314,8 +324,8 @@ client_id=812741506391.apps.googleusercontent.com">Login</a></li>
           </div>
         </div>
       </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
 
     
@@ -357,7 +367,7 @@ tellus ac cursus commodo.</p>
 
 
 
-    <!-- The Javascript
+    <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/jquery.js"></script>
@@ -374,14 +384,45 @@ tellus ac cursus commodo.</p>
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-carousel.js"></script>
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/bootstrap-typeahead.js"></script>
     <script>
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
+        !function ($) {
+            $(function () {
+                // carousel demo
+                $('#myCarousel').carousel()
+            })
+        } (window.jQuery)
     </script>
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/holder.js"></script>
-  
+ 
+
+<!--
+MATT'S LOGIN STUFF!
+-->
+<script type="text/javascript">
+(function() {
+    if (typeof window.janrain !== 'object') window.janrain = {};
+    if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+    
+    janrain.settings.tokenUrl = 'http://localhost/home.php';
+
+    function isReady() { janrain.ready = true; };
+    if (document.addEventListener) {
+      document.addEventListener("DOMContentLoaded", isReady, false);
+    } else {
+      window.attachEvent('onload', isReady);
+    }
+
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.id = 'janrainAuthWidget';
+    if (document.location.protocol === 'https:') {
+      e.src = 'https://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+    } else {
+      e.src = 'http://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+    }
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(e, s);
+})();
+</script>
+
 
 </body></html>
