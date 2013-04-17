@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>Sample Page that Writes Out an HTML Table</TITLE>
+</HEAD>
+<BODY>
+<SCRIPT Language="JavaScript">
+<!--
+
+    document.write('<table border="1" cellspacing="1" cellpadding="5">')
+
+    for (i = 0; i < 3; i++) {
+        document.write('<tr>')
+        document.write('<td>row ' + i + ', column 0</td>')
+        document.write('<td>row ' + i + ', column 1</td>')
+        document.write('<td>row ' + i + ', column 2</td>')
+        document.write('</tr>')
+    }
+
+    document.write('</table>')
+
+//-->
+</SCRIPT>
+</BODY>
+</HTML>
