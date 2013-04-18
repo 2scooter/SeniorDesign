@@ -18,11 +18,10 @@
 
     body {
       padding-bottom: 0;
-      color: #000000;
+      color: #E5E886;
       background-image:url('1.jpg');
-         background-color:#F8F9CA;
+         background-color:#BDBDBD;
     }
-    
 
     #nbar {
     padding-left: 0;
@@ -33,11 +32,10 @@
     width: 850px;
     }
 
-
     /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
 
-    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    /* Special class on .con    tainer surrounding .navbar, used for positioning it into place. */
     .navbar-wrapper {
       position: absolute;
       top: 0;
@@ -54,6 +52,8 @@
     /* Remove border and change up box shadow for more contrast */
     .navbar .navbar-inner {
       border: 0;
+      background-color: aqua;
+      background-image: linear-gradient(to bottom, blue, transparent);
       -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
          -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
               box-shadow: 0 2px 10px rgba(0,0,0,.25);
@@ -64,19 +64,37 @@
       padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
       font-size: 16px;
       font-weight: bold;
-      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+      color: white;
+
     }
 
     /* Navbar links: increase padding for taller navbar */
-    .navbar .nav > li > a {
-      padding: 15px 20px;
+    .navbar .nav > li > a 
+    {
+        color: white;
+        padding: 15px 20px;
+
     }
+     .navbar .nav > li > a:hover
+     {
+      color: black;  
+      text-shadow: none; 
+     }
+     
+     .navbar .nav > .active > a:hover
+     {
+      color: black;   
+     }
 
     /* Offset the responsive button for proper vertical alignment */
     .navbar .btn-navbar {
       margin-top: 10px;
     }
 
+    .navbar .brand:hover
+    {
+        color: black;
+    }
 
 
     /* CUSTOMIZE THE CAROUSEL
@@ -86,12 +104,14 @@
     .carousel {
      
       margin-top: 50px;
+      
     }
 
     .carousel .container {
       position: relative;
       z-index: 9;
     }
+    
 
     .carousel-control {
       height: 80px;
@@ -107,10 +127,9 @@
       height: 500px;
     }
     .carousel img {
-      position: absolute;
-      top: 0px ;
-      left: 0;
-      min-width: 100%;
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
       height: 500px;
     }
 
@@ -222,7 +241,11 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.png">
   <style type="text/css" id="holderjs-style">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style></head>
 
   <body>
@@ -232,13 +255,13 @@
     <!-- NAVBAR
     ================================================== -->
     <SCRIPT LANGUAGE="JAVASCRIPT"></SCRIPT>
-    <div class="navbar-wrapper">
+    <div class="navbar-wrapper" style="position:fixed;">
       <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
       <!--<div class="container">-->
 
         <div class="navbar navbar-inverse">
           <div class="navbar-inner">
-          <div id="nbar">
+            <div id="nbar">
             <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
               <span class="icon-bar"></span>
@@ -249,10 +272,9 @@
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li><a href="home.htm">Home</a></li>
+                <li class="active"><a href="home.htm">Home</a></li>
                 <li><a href="Presentation.htm">Presentation</a></li>
-                <li class="active"><a href="Test.htm">Test</a></li>
-                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                <li><a href="Test.htm">Test</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <!--<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -266,93 +288,122 @@
                     <li><a href="#">One more separated link</a></li>
                   </ul>
                 </li>-->
+
+		<!--   NEEDS TO BE REPLACED WITH OTHER GOOGLE -->
+
 		<li><a href="https://accounts.google.com/o/oauth2/auth?
 scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
 state=%2Fprofile&
 redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&
 response_type=token&
-client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
-		<li><a href="/*   */">Account</a></li>
+client_id=812741506391.apps.googleusercontent.com">Login</a></li>
+                <SCRIPT>
+                    var login = true;
+                    if (login == true) {
+                        document.write('<li><a href="stemui.htm">Administration</a></li>')
+                    }
+                    else {
+                        document.write('<li><a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%2Fprofile&redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&response_type=token&client_id=812741506391.apps.googleusercontent.com">Login</a></li>')
+                    }
+                </SCRIPT>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
         </div><!-- /.navbar -->
-        </div>
+
       </div> <!-- /.container -->
     </div><!-- /.navbar-wrapper -->
 
-
-
+      </SCRIPT>
 
     <!-- Carousel
     ================================================== -->
-	<div id="page">
     <div id="myCarousel" class="carousel slide">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <!--<img src="bootstrap/1.jpg" alt="">-->
+          <img src="Pictures/Fair Overview.jpg" alt="">
           <div class="container">
-          <object data=questionOne.htm width="1170 " height="480"> 
-                <embed src=questionOne.htm width="1170" height="480"> 
-          </embed> Error: Embedded data could not be displayed. </object>
-              <div class="progress progress-striped active" style="margin-top: 0px;">
-                  <div class="bar" style="width: 1%;"></div>
-              </div>  
+         <!-- <object data=simpleSub.htm width="1170 " height="480"> 
+                <embed src=simpleSub.htm width="1170" height="480"> 
+          </embed> Error: Embedded data could not be displayed. </object>-->
           </div>
         </div>
         <div class="item">
-          <!--<img src="bootstrap/2.jpg" alt="">-->
+          <img src="Pictures/Fair 1.jpg" alt="">
           <div class="container">
-          <object data=questionTwo.htm width="1170 " height="480"> 
-                <embed src=questionTwo.htm width="1170" height="480"> 
-          </embed> Error: Embedded data could not be displayed. </object>
-          <div class="progress progress-striped active" style="margin-top: 0px;">
-              <div class="bar" style="width: 33%;"></div>
-          </div>  
           </div>
         </div>
         <div class="item">  
-          <!--<img src="bootstrap/3.jpg" alt="">-->
+          <img src="Pictures/Fair 2.jpg" alt="">
           <div class="container">
-          <object data=questionThree.htm width="1170 " height="480"> 
-                <embed src=questionThree.htm width="1170" height="480"> 
+          <object data=subpage.htm width="1170 " height="480"> 
+                <embed src=subpage.htm width="1170" height="480"> 
           </embed> Error: Embedded data could not be displayed. </object>
-          <div class="progress progress-striped active" style="margin-top: 0px;">
-              <div class="bar" style="width: 66%;"></div>
-          </div>  
           </div>
         </div>
-        <div class="item">  
-          <!--<img src="bootstrap/3.jpg" alt="">-->
+        <div class="item">
+          <img src="Pictures/Jonathan Naber explaining his project.jpg" alt="">
           <div class="container">
-          <object data=testEnd.htm width="1170 " height="480"> 
-                <embed src=testEnd.htm width="1170" height="480"> 
-          </embed> Error: Embedded data could not be displayed. </object>
-          <div class="progress progress-striped active" style="margin-top: 0px;">
-              <div class="bar" style="width: 100%;"></div>
-          </div>  
+          </div>
+        </div>
+        <div class="item">
+          <img src="Pictures/Fair 3.jpg" alt="">
+          <div class="container">
+          </div>
+        </div>
+        <div class="item">
+          <img src="Pictures/Science Fair 2011.jpg" alt="">
+          <div class="container">
           </div>
         </div>
       </div>
-	</div>
-<!--
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
--->
-
     </div><!-- /.carousel -->
-    <a href="#myCarousel" data-slide="prev" style="margin-left: 1000px;" class="btn btn-large btn-primary" href="#">Previous</a>
-    <a href="#myCarousel" data-slide="next"  class="btn btn-large btn-primary" href="#">Next</a>
 
     
 
 
 
+     <!-- <div class="featurette">
+        <img class="featurette-image pull-right" src="bootstrap/browser-icon-chrome.png">
+        <h2 class="featurette-heading">First featurette headling. <span class="muted">It'll blow your mind.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor 
+fringilla. Vestibulum id ligula porta felis euismod semper. Praesent 
+commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, 
+tellus ac cursus commodo.</p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="featurette">
+        <img class="featurette-image pull-left" src="bootstrap/browser-icon-firefox.png">
+        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="muted">See for yourself.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor 
+fringilla. Vestibulum id ligula porta felis euismod semper. Praesent 
+commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, 
+tellus ac cursus commodo.</p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="featurette">
+        <img class="featurette-image pull-right" src="bootstrap/browser-icon-safari.png">
+        <h2 class="featurette-heading">And lastly, this one. <span class="muted">Checkmate.</span></h2>
+        <p class="lead">Donec ullamcorper nulla non metus auctor 
+fringilla. Vestibulum id ligula porta felis euismod semper. Praesent 
+commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, 
+tellus ac cursus commodo.</p>
+      </div>-->
 
 
 
 
-    <!-- javascript
+
+    <!-- The Javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bootstrap/jquery.js"></script>
@@ -366,14 +417,15 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
     <script src="bootstrap/bootstrap-popover.js"></script>
     <script src="bootstrap/bootstrap-button.js"></script>
     <script src="bootstrap/bootstrap-collapse.js"></script>
-    <script src="bootstrap/bootstrap-carousel.js"></script>
+    <script src="bootstrap/mainCarosel.js"></script>
     <script src="bootstrap/bootstrap-typeahead.js"></script>
     <script>
-        !function ($) {
-            $(function () {//twirl the caroslel
-                $('#myCarousel').carousel()
-            })
-        } (window.jQuery)
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
     </script>
     <script src="bootstrap/holder.js"></script>
   
