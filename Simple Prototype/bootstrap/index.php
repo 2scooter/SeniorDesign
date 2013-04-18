@@ -384,11 +384,11 @@ ob_end_clean();
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="home.php">Regional Science and Engineering Challenge!</a>
+            <a class="brand" href="index.php">Regional Science and Engineering Challenge!</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
            <ul class="nav">
-                <li class ="active"><a href="home.php">Home</a></li>
+                <li class ="active"><a href="index.php">Home</a></li>
                 <li><a href="Presentation.php">Presentation</a></li>
                 <li><a href="Test.php">Test</a></li>
                 <li>
@@ -540,7 +540,7 @@ tellus ac cursus commodo.</p>
         if (typeof window.janrain !== 'object') window.janrain = {};
         if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
         
-        janrain.settings.tokenUrl = 'http://www.judgestraining.org/home.php';
+        janrain.settings.tokenUrl = 'http://www.judgestraining.org/index.php';
 
         function isReady() { janrain.ready = true; };
         if (document.addEventListener) {
