@@ -1,4 +1,127 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+?>
+<!--
+Matt's PHP stuff - START
+-->
+<?php
+/*
+ * This script is intended as an educational tool.
+ * Please look at the PHP SDK if you are looking for somthing suited to a new project.
+ * https://github.com/janrain/Janrain-Sample-Code/tree/master/php/janrain-engage-php-sdk
+ */
+
+ob_start();
+/*
+ Below is a very simple and verbose PHP 5 script that implements the Engage token URL processing and some popular Pro/Enterprise examples.
+ The code below assumes you have the CURL HTTP fetching library with SSL.  
+*/
+
+// PATH_TO_API_KEY_FILE should contain a path to a plain text file containing only
+// your API key. This file should exist in a path that can be read by your web server,
+// but not publicly accessible to the Internet.
+$rpx_api_key = "6f7db617b7e06dd9497f089bee3d72648e03bbcd";
+
+/*
+ Set this to true if your application is Pro or Enterprise.
+ Set this to false if your application is Basic or Plus.
+*/
+$engage_pro = false;
+
+/* STEP 1: Extract token POST parameter */
+$token = $_POST['token'];
+
+//Some output to help debugging
+/*
+echo "SERVER VARIABLES:\n";
+var_dump($_SERVER);
+echo "HTTP POST ARRAY:\n";
+var_dump($_POST);
+*/
+
+if(strlen($token) == 40) {//test the length of the token; it should be 40 characters
+
+  /* STEP 2: Use the token to make the auth_info API call */
+  $post_data = array('token'  => $token,
+                     'apiKey' => $rpx_api_key,
+                     'format' => 'json',
+                     'extended' => 'false'); //Extended is not available to Basic.
+
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_URL, 'https://rpxnow.com/api/v2/auth_info');
+  curl_setopt($curl, CURLOPT_POST, true);
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+  curl_setopt($curl, CURLOPT_HEADER, false);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($curl, CURLOPT_FAILONERROR, true);
+  $result = curl_exec($curl);
+  if ($result == false){
+    echo "\n".'Curl error: ' . curl_error($curl);
+    echo "\n".'HTTP code: ' . curl_errno($curl);
+    echo "\n"; var_dump($post_data);
+  }
+  curl_close($curl);
+
+
+  /* STEP 3: Parse the JSON auth_info response */
+  $auth_info = json_decode($result, true);
+
+  if ($auth_info['stat'] == 'ok') {
+    echo "Authenticated!";
+  /*
+    echo "\n auth_info:";
+    echo "\n"; var_dump($auth_info);
+  */
+    $profile = $auth_info[profile];
+    $email = $profile[email];
+    $identifier = $profile[identifier];
+    $identifier = trim($identifier,"https://www.google.com/profiles/");
+    $_SESSION['name'] = $identifier;
+    $displayname = $profile[displayname];
+
+    // DATABASE STUFF GOES HERE ===============================
+// Create connection
+$con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
+    
+  // Check connection
+  if (mysqli_connect_errno($con))
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  else
+  {
+      echo "Connection successful!";
+  }
+  mysqli_query($con,"INSERT INTO users (accountid) VALUES ('p00p')");
+  
+
+ mysqli_close($con);
+
+    // END DATABASE STUFF =====================================
+    
+
+    } else {
+      // Gracefully handle auth_info error.  Hook this into your native error handling system.
+      echo "\n".'An error occured: ' . $auth_info['err']['msg']."\n";
+      var_dump($auth_info);
+      echo "\n";
+      var_dump($result);
+    }
+}else{
+  // Gracefully handle the missing or malformed token.  Hook this into your native error handling system.
+  echo 'Authentication canceled.';
+}
+$debug_out = ob_get_contents();
+ob_end_clean();
+?>
+
+<!--
+----------------------------Matt's PHP stuff - END
+-->
+
+
+<!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -232,29 +355,26 @@
 
 
 
-    <!-- NAVBAR
-    ================================================== -->
-    <SCRIPT LANGUAGE="JAVASCRIPT"></SCRIPT>
-    <div class="navbar-wrapper" style="position:fixed;">
+    <!-- NAVBAR  ================================================== -->
+    <div class="navbar-wrapper">
       <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
-      <!--<div class="container">-->
+      <div class="container">
 
         <div class="navbar navbar-inverse">
           <div class="navbar-inner">
-            <div id="nbar">
             <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="home.htm">Regioinal Science and Engineering Challenge!</a>
+            <a class="brand" href="home.php">Science Fair Learning Place!</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li class="active"><a href="home.htm">Home</a></li>
-                <li><a href="Presentation.htm">Presentation</a></li>
-                <li><a href="Test.htm">Test</a></li>
+                <li class="active"><a href="home.php">Home</a></li>
+                <li><a href="Presentation.php">Presentation</a></li>
+                <li><a href="Test.php">Test</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <!--<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -268,24 +388,12 @@
                     <li><a href="#">One more separated link</a></li>
                   </ul>
                 </li>-->
-
-		<!--   NEEDS TO BE REPLACED WITH OTHER GOOGLE -->
-
-		<li><a href="https://accounts.google.com/o/oauth2/auth?
-scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
-state=%2Fprofile&
-redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&
-response_type=token&
-client_id=812741506391.apps.googleusercontent.com">Login</a></li>
-                <SCRIPT>
-                    var login = true;
-                    if (login == true) {
-                        document.write('<li><a href="stemui.htm">Administration</a></li>')
-                    }
-                    else {
-                        document.write('<li><a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%2Fprofile&redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&response_type=token&client_id=812741506391.apps.googleusercontent.com">Login</a></li>')
-                    }
-                </SCRIPT>
+    <li>
+    <?php if($_SESSION['name'] == "") : ?>
+    <a class="janrainEngage" href="#">Login</a></li>
+    <?php else : ?>
+    <a href ="logout.php">Logout</a>
+    <?php endif; ?>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
@@ -293,8 +401,6 @@ client_id=812741506391.apps.googleusercontent.com">Login</a></li>
 
       </div> <!-- /.container -->
     </div><!-- /.navbar-wrapper -->
-
-      </SCRIPT>
 
     <!-- Carousel
     ================================================== -->
@@ -408,6 +514,35 @@ tellus ac cursus commodo.</p>
       }(window.jQuery)
     </script>
     <script src="bootstrap/holder.js"></script>
+    <!--
+MATT'S LOGIN STUFF!
+-->
+<script type="text/javascript">
+(function() {
+    if (typeof window.janrain !== 'object') window.janrain = {};
+    if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+    
+    janrain.settings.tokenUrl = 'http://www.judgestraining.org/home.php';
+
+    function isReady() { janrain.ready = true; };
+    if (document.addEventListener) {
+      document.addEventListener("DOMContentLoaded", isReady, false);
+    } else {
+      window.attachEvent('onload', isReady);
+    }
+
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.id = 'janrainAuthWidget';
+    if (document.location.protocol === 'https:') {
+      e.src = 'https://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+    } else {
+      e.src = 'http://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+    }
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(e, s);
+})();
+</script>
   
 
 </body></html>
