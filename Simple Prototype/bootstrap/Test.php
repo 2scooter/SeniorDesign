@@ -1,4 +1,4 @@
-ï»¿<?php
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -98,6 +98,14 @@ session_start();
     }
 
     .navbar .brand:hover
+    {
+        color: black;
+    }
+        .navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus {
+        color: #ffffff;
+        background-color: rgba(0, 39, 197, 0.24);
+    }
+    .navbar-inverse .nav .active > a:hover
     {
         color: black;
     }
@@ -285,13 +293,13 @@ session_start();
                         <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
                         </span>
                     </button>
-                    <a class="brand" href="home.htm">Regioinal Science and Engineering Challenge!</a>
+                    <a class="brand" href="home.php">Regioinal Science and Engineering Challenge!</a>
                     <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
                     <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li class="active"><a href="home.php">Home</a></li>
+                        <li><a href="home.php">Home</a></li>
                         <li><a href="Presentation.php">Presentation</a></li>
-                        <li><a href="Test.php">Test</a></li>
+                        <li class="active"><a href="Test.php">Test</a></li>
                         <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                         <!--<li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -386,8 +394,8 @@ session_start();
             </div>
         </div>
         <!--
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">â€¹</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">â€º</a>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
 -->
     </div>
     <!-- /.carousel -->

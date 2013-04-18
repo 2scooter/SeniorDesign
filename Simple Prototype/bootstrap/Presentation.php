@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 session_start(); 
 ?>
 
@@ -99,6 +99,14 @@ session_start();
       color: black;   
      }
 
+    .navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus {
+        color: #ffffff;
+        background-color: rgba(0, 39, 197, 0.24);
+    }
+    .navbar-inverse .nav .active > a:hover
+    {
+        color: black;
+    }
     /* Offset the responsive button for proper vertical alignment */
     .navbar .btn-navbar {
       margin-top: 10px;
@@ -278,12 +286,12 @@ session_start();
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="home.htm">Regioinal Science and Engineering Challenge!</a>
+            <a class="brand" href="home.php">Regioinal Science and Engineering Challenge!</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
             <ul class="nav">
-                <li class="active"><a href="home.php">Home</a></li>
-                <li><a href="Presentation.php">Presentation</a></li>
+                <li><a href="home.php">Home</a></li>
+                <li class="active"><a href="Presentation.php">Presentation</a></li>
                 <li><a href="Test.php">Test</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <!--<li class="dropdown">

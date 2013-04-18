@@ -1,4 +1,4 @@
-﻿<?php session_start(); ?>
+<?php session_start(); ?>
 <!--
 Matt's PHP stuff - START
 -->
@@ -66,7 +66,6 @@ if(strlen($token) == 40) {//test the length of the token; it should be 40 charac
   $auth_info = json_decode($result, true);
 
   if ($auth_info['stat'] == 'ok') {
-    echo "Authenticated!";
   /*
     echo "\n auth_info:";
     echo "\n"; var_dump($auth_info);
@@ -79,20 +78,17 @@ if(strlen($token) == 40) {//test the length of the token; it should be 40 charac
     $displayname = $profile[displayname];
 
     // DATABASE STUFF GOES HERE ===============================
-// Create connection
+  // Create connection
 $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
-    
   // Check connection
   if (mysqli_connect_errno($con))
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  else
-  {
-      echo "Connection successful!";
-  }
-  mysqli_query($con,"INSERT INTO users (accountid) VALUES ('p00p')");
+  mysqli_query($con,"INSERT INTO users (accountid, email, accesslevel,testprogress,testscore,trainingprogress) VALUES ($identifier,'$email',0,0,0,0)");
   
+  $result = mysqli_query($con,"SELECT * FROM users");
+
 
  mysqli_close($con);
 
@@ -168,7 +164,15 @@ ob_end_clean();
     .navbar-wrapper .navbar {
 
     }
-
+    .navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus {
+        color: #ffffff;
+        background-color: rgba(0, 39, 197, 0.24);
+    }
+    .navbar-inverse .nav .active > a:hover
+    {
+        color: black;
+    }
+    
     /* Remove border and change up box shadow for more contrast */
     .navbar .navbar-inner {
       border: 0;
@@ -199,11 +203,6 @@ ob_end_clean();
      {
       color: black;  
       text-shadow: none; 
-     }
-     
-     .navbar .nav > .active > a:hover
-     {
-      color: black;   
      }
 
     /* Offset the responsive button for proper vertical alignment */
@@ -385,11 +384,11 @@ ob_end_clean();
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="home.htm">Regioinal Science and Engineering Challenge!</a>
+            <a class="brand" href="home.php">Regional Science and Engineering Challenge!</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
            <ul class="nav">
-                <li class="active"><a href="home.php">Home</a></li>
+                <li class ="active"><a href="home.php">Home</a></li>
                 <li><a href="Presentation.php">Presentation</a></li>
                 <li><a href="Test.php">Test</a></li>
                 <li>
@@ -428,6 +427,8 @@ ob_end_clean();
          echo "</h1>";
          echo "</center>";
         } ?>
+        
+        
 
           <img src="Pictures/Fair Overview.jpg" alt="">
           <div class="container">
