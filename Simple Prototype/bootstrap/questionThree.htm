@@ -1,25 +1,56 @@
 <!DOCTYPE html>
-<html>
-<body bgcolor="#D8D8D8">
-    <h1>
-        Question 3</h1>
-    <p>
-        <font size="6"> You have six projects to judge. The first thing you should do is:</font>
-    </p>
+	<html>
+		<body bgcolor="#F8F98F">
+		
+<h1>Question 3</h1>
 
-    <div>
-        <input type="radio" name="group1" value="A">Head to your first project and introduce
-        yourself. Then, explain that you would like to hear from the student about their
-        project before reading his/her paper.<br>
-        <br>
-        <input type="radio" name="group1" value="A">
-        Stop by your first project and ask if the participant has any questions.<br>
-        <br>
-        <input type="radio" name="group1" value="A">
-        Visit each project on your list, giving students information about where they are
-        in your order of projects (first, second, etc.) and when they should expect you.<br>
-        <br>
-        <input type="radio" name="group1" value="A">
-        None of the above</div>
-</body>
+<p>
+    3.	You have six projects to judge. The first thing you should do is:
+</p>
+
+
+<script type="text/javascript">
+    function setColor(answer) {
+        if (answer == 1) {
+            Question1.style.backgroundColor = "Teal";
+            Question2.style.backgroundColor = "";
+            Question3.style.backgroundColor = "";
+            Question4.style.backgroundColor = "";
+        }
+        else if (answer == 2) {
+            Question1.style.backgroundColor = "";
+            Question2.style.backgroundColor = "Teal";
+            Question3.style.backgroundColor = "";
+            Question4.style.backgroundColor = "";
+        }
+        else if (answer == 3) {
+            Question1.style.backgroundColor = "";
+            Question2.style.backgroundColor = "";
+            Question3.style.backgroundColor = "Teal";
+            Question4.style.backgroundColor = "";
+        }
+        else if (answer == 4) {
+            Question1.style.backgroundColor = "";
+            Question2.style.backgroundColor = "";
+            Question3.style.backgroundColor = "";
+            Question4.style.backgroundColor = "Teal";
+        }
+        else {
+            Question1.style.backgroundColor = "";
+            Question2.style.backgroundColor = "";
+            Question3.style.backgroundColor = "";
+            Question4.style.backgroundColor = "";
+        }
+    }
+</script>
+
+<div><button id="Question1" type="button" onclick="setColor(1)">(A)</button>Head to your first project and introduce yourself. Then, explain that you would like to hear from the student about their project before reading his/her paper.</div>
+<div><button id="Question2" type="button" onclick="setColor(2)">(B)</button>Stop by your first project and ask if the participant has any questions.</div>
+<div><button id="Question3" type="button" onclick="setColor(3)">(C)</button>Visit each project on your list, giving students information about where they are in your order of projects (first, second, etc.) and when they should expect you.</div>
+<div><button id="Question4" type="button" onclick="setColor(4)">(D)</button>None of the above</div>
+
+
+
+
+	</body>
 </html>
