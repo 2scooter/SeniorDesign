@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -35,52 +38,70 @@
         }
         
         
-        /* CUSTOMIZE THE NAVBAR
+    /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
-        
-        /* Special class on .container surrounding .navbar, used for positioning it into place. */
-        .navbar-wrapper
-        {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 10;
-            margin-top: 0px; /* margin-bottom: 500px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
-        }
-        .navbar-wrapper .navbar
-        {
-        }
-        
-        /* Remove border and change up box shadow for more contrast */
-        .navbar .navbar-inner
-        {
-            border: 0;
-            -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-            -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-            box-shadow: 0 2px 10px rgba(0,0,0,.25);
-        }
-        
-        /* Downsize the brand/project name a bit */
-        .navbar .brand
-        {
-            padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
-            font-size: 16px;
-            font-weight: bold;
-            text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-        }
-        
-        /* Navbar links: increase padding for taller navbar */
-        .navbar .nav > li > a
-        {
-            padding: 15px 20px;
-        }
-        
-        /* Offset the responsive button for proper vertical alignment */
-        .navbar .btn-navbar
-        {
-            margin-top: 10px;
-        }
+
+    /* Special class on .con    tainer surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      margin-top: 0px;
+     /* margin-bottom: 500px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+    }
+    .navbar-wrapper .navbar {
+
+    }
+
+    /* Remove border and change up box shadow for more contrast */
+    .navbar .navbar-inner {
+      border: 0;
+      background-color: aqua;
+      background-image: linear-gradient(to bottom, blue, transparent);
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+              box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+
+    /* Downsize the brand/project name a bit */
+    .navbar .brand {
+      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+
+    }
+
+    /* Navbar links: increase padding for taller navbar */
+    .navbar .nav > li > a 
+    {
+        color: white;
+        padding: 15px 20px;
+
+    }
+     .navbar .nav > li > a:hover
+     {
+      color: black;  
+      text-shadow: none; 
+     }
+     
+     .navbar .nav > .active > a:hover
+     {
+      color: black;   
+     }
+
+    /* Offset the responsive button for proper vertical alignment */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+    .navbar .brand:hover
+    {
+        color: black;
+    }
+
         
         
         
@@ -267,32 +288,30 @@
                     <a class="brand" href="home.htm">Regioinal Science and Engineering Challenge!</a>
                     <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
                     <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li><a href="home.htm">Home</a></li>
-                            <li><a href="Presentation.htm">Presentation</a></li>
-                            <li class="active"><a href="Test.htm">Test</a></li>
-                            <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-                            <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-                            <!--<li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>-->
-                            <li><a href="https://accounts.google.com/o/oauth2/auth?
-scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
-state=%2Fprofile&
-redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&
-response_type=token&
-client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
-                            <li><a href="/*   */">Account</a></li>
-                        </ul>
+                    <ul class="nav">
+                        <li class="active"><a href="home.php">Home</a></li>
+                        <li><a href="Presentation.php">Presentation</a></li>
+                        <li><a href="Test.php">Test</a></li>
+                        <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                        <!--<li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="nav-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                          </ul>
+                        </li>-->
+                      <li>
+                      <?php if($_SESSION['name'] == "") : ?>
+                      <a class="janrainEngage" href="#">Login</a></li>
+                      <?php else : ?>
+                      <a href ="logout.php">Logout</a>
+                      <?php endif; ?>
+                  </ul>          
                     </div>
                     <!--/.nav-collapse -->
                 </div>
@@ -399,5 +418,35 @@ client_id=812741506391.apps.googleusercontent.com">Logout</a></li>
         } (window.jQuery)
     </script>
     <script src="bootstrap/holder.js"></script>
+        <!--
+    MATT'S LOGIN STUFF!
+    -->
+    <script type="text/javascript">
+    (function() {
+        if (typeof window.janrain !== 'object') window.janrain = {};
+        if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+        
+        janrain.settings.tokenUrl = 'http://www.judgestraining.org/home.php';
+
+        function isReady() { janrain.ready = true; };
+        if (document.addEventListener) {
+          document.addEventListener("DOMContentLoaded", isReady, false);
+        } else {
+          window.attachEvent('onload', isReady);
+        }
+
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.id = 'janrainAuthWidget';
+        if (document.location.protocol === 'https:') {
+          e.src = 'https://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+        } else {
+          e.src = 'http://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+        }
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(e, s);
+    })();
+    </script>
+  
 </body>
 </html>

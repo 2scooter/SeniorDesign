@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<?php 
+session_start(); 
+?>
+
+<!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -31,8 +35,17 @@
     display: block;
     width: 850px;
     }
+    #pic
+    {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        width: 600px;
+    }
 
-    /* CUSTOMIZE THE NAVBAR
+      /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
 
     /* Special class on .con    tainer surrounding .navbar, used for positioning it into place. */
@@ -152,7 +165,6 @@
     }
 
 
-
     /* MARKETING CONTENT
     -------------------------------------------------- */
 
@@ -234,7 +246,6 @@
 
     }
     </style>
-
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
@@ -254,27 +265,26 @@
 
     <!-- NAVBAR
     ================================================== -->
-    <SCRIPT LANGUAGE="JAVASCRIPT"></SCRIPT>
-    <div class="navbar-wrapper" style="position:fixed;">
+    <div class="navbar-wrapper">
       <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
       <!--<div class="container">-->
 
         <div class="navbar navbar-inverse">
           <div class="navbar-inner">
-            <div id="nbar">
+          <div id="nbar">
             <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-              <span class="icon-bar"></span>
+              <span class="icon-bsar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
             <a class="brand" href="home.htm">Regioinal Science and Engineering Challenge!</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
-              <ul class="nav">
-                <li class="active"><a href="home.htm">Home</a></li>
-                <li><a href="Presentation.htm">Presentation</a></li>
-                <li><a href="Test.htm">Test</a></li>
+            <ul class="nav">
+                <li class="active"><a href="home.php">Home</a></li>
+                <li><a href="Presentation.php">Presentation</a></li>
+                <li><a href="Test.php">Test</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <!--<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -288,81 +298,65 @@
                     <li><a href="#">One more separated link</a></li>
                   </ul>
                 </li>-->
-
-		<!--   NEEDS TO BE REPLACED WITH OTHER GOOGLE -->
-
-		<li><a href="https://accounts.google.com/o/oauth2/auth?
-scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
-state=%2Fprofile&
-redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&
-response_type=token&
-client_id=812741506391.apps.googleusercontent.com">Login</a></li>
-                <SCRIPT>
-                    var login = true;
-                    if (login == true) {
-                        document.write('<li><a href="stemui.htm">Administration</a></li>')
-                    }
-                    else {
-                        document.write('<li><a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%2Fprofile&redirect_uri=https%3A%2F%2Foauth2-login-demo.appspot.com%2Foauthcallback&response_type=token&client_id=812741506391.apps.googleusercontent.com">Login</a></li>')
-                    }
-                </SCRIPT>
-              </ul>
+              <li>
+              <?php if($_SESSION['name'] == "") : ?>
+              <a class="janrainEngage" href="#">Login</a></li>
+              <?php else : ?>
+              <a href ="logout.php">Logout</a>
+              <?php endif; ?>
+              </ul>          
             </div><!--/.nav-collapse -->
+            </div><!--/.nav-centerer-->
           </div><!-- /.navbar-inner -->
         </div><!-- /.navbar -->
 
-      </div> <!-- /.container -->
+      <!--</div> <!-- /.container -->
     </div><!-- /.navbar-wrapper -->
 
-      </SCRIPT>
+
 
     <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide">
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="Pictures/Fair Overview.jpg" alt="">
-          <div class="container">
-         <!-- <object data=simpleSub.htm width="1170 " height="480"> 
-                <embed src=simpleSub.htm width="1170" height="480"> 
-          </embed> Error: Embedded data could not be displayed. </object>-->
+          <!--<img src="bootstrap/1.jpg" alt="">-->
+          <div class="container"style=" border:1px inset lightgrey;"> <!-- Color for the wrappers boarder-->
+          
+              <object id="pic" data=simpleSub.htm width="1170 " height="480"> 
+                    <embed src=simpleSub.htm width="1170" height="480"> 
+                    </embed> Error: Embedded data could not be displayed. </object>
+                  <div class="progress progress-striped active" style="margin-top: 0px;">
+                  <div class="bar" style="width: 33%;"></div>
+              </div> 
+            </div> 
           </div>
-        </div>
         <div class="item">
-          <img src="Pictures/Fair 1.jpg" alt="">
+          <!--<img src="bootstrap/2.jpg" alt="">-->
           <div class="container">
+          <object data=youtubeSub.htm width="1170 " height="480"> 
+                <embed src=youtubeSub.htm width="1170" height="480"> 
+          </embed> Error: Embedded data could not be displayed. </object>
+          <div class="progress progress-striped active" style="margin-top: 0px;">
+              <div class="bar" style="width: 66%;"></div>
+          </div>  
           </div>
         </div>
         <div class="item">  
-          <img src="Pictures/Fair 2.jpg" alt="">
+          <!--<img src="bootstrap/3.jpg" alt="">-->
           <div class="container">
           <object data=subpage.htm width="1170 " height="480"> 
                 <embed src=subpage.htm width="1170" height="480"> 
           </embed> Error: Embedded data could not be displayed. </object>
-          </div>
-        </div>
-        <div class="item">
-          <img src="Pictures/Jonathan Naber explaining his project.jpg" alt="">
-          <div class="container">
-          </div>
-        </div>
-        <div class="item">
-          <img src="Pictures/Fair 3.jpg" alt="">
-          <div class="container">
-          </div>
-        </div>
-        <div class="item">
-          <img src="Pictures/Science Fair 2011.jpg" alt="">
-          <div class="container">
+          <div class="progress progress-striped active" style="margin-top: 0px;">
+              <div class="bar" style="width: 100%;"></div>
+          </div>  
           </div>
         </div>
       </div>
     </div><!-- /.carousel -->
+    <a href="#myCarousel" data-slide="prev" style="margin-left: 1000px;" class="btn btn-large btn-primary" href="#">Previous</a>
+    <a href="#myCarousel" data-slide="next"  class="btn btn-large btn-primary" href="#">Next</a>
 
     
 
@@ -403,7 +397,7 @@ tellus ac cursus commodo.</p>
 
 
 
-    <!-- The Javascript
+    <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="bootstrap/jquery.js"></script>
@@ -417,17 +411,46 @@ tellus ac cursus commodo.</p>
     <script src="bootstrap/bootstrap-popover.js"></script>
     <script src="bootstrap/bootstrap-button.js"></script>
     <script src="bootstrap/bootstrap-collapse.js"></script>
-    <script src="bootstrap/mainCarosel.js"></script>
+    <script src="bootstrap/bootstrap-carousel.js"></script>
     <script src="bootstrap/bootstrap-typeahead.js"></script>
     <script>
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
+        !function ($) {
+            $(function () {
+                // carousel demo
+                $('#myCarousel').carousel()
+            })
+        } (window.jQuery)
     </script>
     <script src="bootstrap/holder.js"></script>
+        <!--
+    MATT'S LOGIN STUFF!
+    -->
+    <script type="text/javascript">
+    (function() {
+        if (typeof window.janrain !== 'object') window.janrain = {};
+        if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+        
+        janrain.settings.tokenUrl = 'http://www.judgestraining.org/home.php';
+
+        function isReady() { janrain.ready = true; };
+        if (document.addEventListener) {
+          document.addEventListener("DOMContentLoaded", isReady, false);
+        } else {
+          window.attachEvent('onload', isReady);
+        }
+
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.id = 'janrainAuthWidget';
+        if (document.location.protocol === 'https:') {
+          e.src = 'https://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+        } else {
+          e.src = 'http://rpxnow.com/js/lib/stem-login/engage.js?minify=false&3719813926';
+        }
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(e, s);
+    })();
+    </script>
   
 
 </body></html>
