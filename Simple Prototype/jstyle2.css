@@ -1,0 +1,191 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	background-color:white;/*#E6E6E6;*/  
+}
+/*sets the whole page within a wrapper
+  mainly to deal with border limitations*/
+#wrapper {
+	width:100%;
+	height:100%;
+	background-size: 100%;
+}
+/*the black bar at the top of the page*/
+#heads {
+	height:100px;
+	min-width:100%;
+}
+#headerText{
+	color:white;
+	position:absolute;
+	font-size: 1cm;
+	left:50%;
+	top:25px;
+	margin-left:-200px;
+}
+#tabspace{
+	height:50px;
+	min-width:100%;
+	/*the version with the red/black circle gradient
+/* IE10 Consumer Preview */ /*
+background-image: -ms-radial-gradient(center, ellipse farthest-side, #000000 0%, #9F0B0B 50%, #BA4545 75%, #FFFFFF 87.5%, #525252 100%);
+
+/* Mozilla Firefox */ /*
+background-image: -moz-radial-gradient(center, ellipse farthest-side, #000000 0%, #9F0B0B 50%, #BA4545 75%, #FFFFFF 87.5%, #525252 100%);
+
+/* Opera */ /*
+background-image: -o-radial-gradient(center, ellipse farthest-side, #000000 0%, #9F0B0B 50%, #BA4545 75%, #FFFFFF 87.5%, #525252 100%);
+
+/* Webkit (Safari/Chrome 10) */ /*
+background-image: -webkit-gradient(radial, center center, 0, center center, 487, color-stop(0, #000000), color-stop(0.5, #9F0B0B), color-stop(0.75, #BA4545), color-stop(0.875, #FFFFFF), color-stop(1, #525252));
+
+/* Webkit (Chrome 11+) */ /*
+background-image: -webkit-radial-gradient(center, ellipse farthest-side, #000000 0%, #9F0B0B 50%, #BA4545 75%, #FFFFFF 87.5%, #525252 100%);
+
+/* W3C Markup, IE10 Release Preview */ /*
+background-image: radial-gradient(ellipse farthest-side at center, #000000 0%, #9F0B0B 50%, #BA4545 75%, #FFFFFF 87.5%, #525252 100%);*/
+}
+#bgimage{
+	opacity: .25;
+	width: 1920px;
+	height:1080px;
+	position:absolute;
+	
+}
+
+#headerImage{
+	opacity: .75;
+	width: 100%;
+	height:100px;
+	position:absolute;
+	margin-top:-152px;
+
+}
+#tabImage{
+	opacity: .7;
+	width: 100%;
+	height:50px;
+	position:absolute;
+	margin-top:-50px;
+	
+}
+#centerImage{
+
+	opacity: .7;
+	width: 100%;
+	height:50px;
+	position:absolute;
+}
+/*the caos logo on the black bar at the top of the page*/
+#logo{
+	height:100px;
+	position:absolute;
+	left: 50%;
+	margin-left:-475px;
+	margin-top:-150px;
+}
+
+/*Lindsey's New Testing of Tabs Section*/
+#monkeycontainer{
+    padding: 30px;
+    margin: 20px 0 20 px;
+    background: #fff;
+    }
+#monkeytab{
+    width: 100%;
+    float: right;
+    font-size: small;
+    padding 0 10px 0 10px;
+    border-bottom: 1px solid #333;
+    }
+#monkeytab li{
+    float: right;
+    margin: 0;
+    padding: 0;
+    display: insline;
+    list-style: none;
+    }
+#monekytab a:link, #monkeytab a:visited{
+    float: right;
+    font-size: 85%;
+    line-height: 20px;
+    font-weight: bold;
+    margin: 0 10px 0 10px;
+    text-decoration: none;
+    color: #999;
+    }
+#monkeytab a.active:link, #monkeytab a.active:visited, #monkeytab a:hover{
+    border-bottom: 4px solid #333;
+    padding-bottom: 2px;
+    color: #333;
+    }
+
+
+/*divs for the tab controls to switch between*/
+#tabContainer{
+	position: absolute;
+	margin-top:10px;
+	left: 50%;
+	margin-left:-475px;
+	width:950px;
+}
+#tabscontent{
+	margin-left:25px;
+	left:2.5%
+}
+#wowslider-container1{
+	top:50px;
+	left:-12px;
+}
+/*the controls for the tabs*/
+#tabs{
+	margin-top: -75px;
+	height:2px;
+	margin-left:-250px;
+	color:white;
+	position:absolute;
+	left:50%;
+}
+#tabs > ul{
+	font-size: 0.550em;
+    font-family:"Ariel-Narrow", Helvetica, sans-serif;
+	list-style:none;
+}
+#tabs > ul > li{
+	padding:7px 10px;
+	float:left;
+	color:#E6E6E6;
+}
+#tabs > ul > li:hover{
+	cursor:pointer;
+	color: #FFFFFF;
+}
+
+#tabs > ul > li.tabActiveHeader{
+	cursor:pointer;
+	color: #FFFFFF;
+}
+/*the container that limits the size of content to the middle of the page*/
+#content{		
+	/*background-image:url("caos_files/otherbg.png");
+	background-size:100% 100%;*/
+	width:100%;
+	height: 475px;
+}
+/*sets the size of images in the content container*/
+#imageWidth{
+position: absolute;
+width: 922px;
+left: 50%;
+margin-left: -460px;
+}
+/*probably temporary
+sets the size of images to the red box*/
+#centerImage{
+height: 500px;
+background-size: 98% 80%;
+background-position-y: 35px;
+background-repeat: no-repeat;
+}
+
+
