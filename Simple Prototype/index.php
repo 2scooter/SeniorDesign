@@ -3,12 +3,11 @@
 
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<link href="index.css" rel="stylesheet" type="text/css">
+	<link href="css/index.css" rel="stylesheet" type="text/css">
 	<link href='http://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="dropdown.css" type="text/css" />
-	<script type="text/javascript" src="dropdown.js"></script>
-	<script type="text/javascript" src="electricslide.js"></script>
-
+	<link rel="stylesheet" href="css/dropdown.css" type="text/css" />
+	<script type="text/javascript" src="js/dropdown.js"></script>
+	<script type="text/javascript" src="js/electricslide.js"></script>
 </head>
     <body>
 		
@@ -137,7 +136,7 @@
 		</div>
 		</div>
 
-		<script src="tabs_old.js"></script>
+		<script src="js/tabs_old.js"></script>
 		
 <script type="text/javascript">
 
