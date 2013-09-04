@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="dropdown.css" type="text/css" />
 	<script type="text/javascript" src="dropdown.js"></script>
 	<script type="text/javascript" src="electricslide.js"></script>
-	<script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 
 </head>
     <body>
@@ -48,7 +47,7 @@
 							 <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><h1><a>Administration</a></h1></dt>
 						</li>
                         <li id="tabHeader_5" tab = "1"><tab><h1>Contact Us</h1></tab></li>
-						<li  href="http://www.cornify.com" onclick="cornify_add();return false;"><h1>Cornify</h1></li>
+						
 					</ul>
 					<div id="dropdown">
 						<div id="one-ddcontainer">
