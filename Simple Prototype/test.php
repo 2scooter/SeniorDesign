@@ -23,20 +23,20 @@
             </div>
             <div id="whiteline" style="height:2px; `background-color: white; left:50%; width:950px; margin-left:-475px; top:100px; position: absolute;">
         </div>
+
     </div>
     <div id="tabspace"></div>
-
     <div id="tabContainer">
         <div id="tabs">
             <ul>
                 <li id="tabHeader_1" tab = "1">
-                    <tab><h1><a style="color:tomato; text-decoration: none;" href="index.php">Home</a></h1></tab>
+                    <tab><h1><a style="color:white; text-decoration: none;" href="index.php">Home</a></h1></tab>
                 </li>
                 <li id="tabHeader_2" tab = "1">
                     <tab><h1><a style="color:white; text-decoration: none;" href="presentation.php">Presentation</a></h1></tab>
                 </li>
                 <li id="tabHeader_3" tab = "1">
-                    <tab><h1><a style="color:white; text-decoration: none;" href="test.php">Test</a></h1></tab>
+                    <tab><h1><a style="color:tomato; text-decoration: none;" href="test.php">Test</a></h1></tab>
                 </li>
                 <li tab = "0">
                      <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><h1><a>Administration</a></h1></dt>
@@ -60,10 +60,10 @@
                 </div>
             </div>
         </div>
-
         <div id="content">
             <div id="tabscontent">
                 <div class="tabpage" id="tabpage_1">
+
                     <!-- php to build the slider list -->
                     <div class="sliderContainer">
                         <ul>
@@ -97,19 +97,17 @@
         <h1> </h1>
     </div>
 
-    <script src="js/index.js"></script>
-
+    <script src="js/test.js"></script>
     <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-1332079-8']);
+        _gaq.push(['_trackPageview']);
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-1332079-8']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
 
     </script>
 </body>

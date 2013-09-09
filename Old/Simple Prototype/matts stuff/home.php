@@ -120,7 +120,7 @@ ob_end_clean();
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Carousel Template · Bootstrap</title>
+    <title>Carousel Template ï¿½ Bootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -495,9 +495,7 @@ tellus ac cursus commodo.</p>
     <script src="Carousel%20Template%20%C2%B7%20Bootstrap_files/holder.js"></script>
 
 
-<!--
-MATT'S LOGIN STUFF!
--->
+<!--MATTS LOGIN STUFF!-->
 <script type="text/javascript">
 (function() {
     if (typeof window.janrain !== 'object') window.janrain = {};
