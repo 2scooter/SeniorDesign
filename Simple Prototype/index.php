@@ -21,28 +21,28 @@
             <div id="headerSubText">
                 Training and Testing
             </div>
-            <div id="whiteline" style="height:2px; `background-color: white; left:50%; width:950px; margin-left:-475px; top:100px; position: absolute;">
+            <div id="whiteline" style="height:2px; background-color: white; left:50%; width:950px; margin-left:-475px; top:100px; position: absolute;">
         </div>
     </div>
     <div id="tabspace"></div>
 
     <div id="tabContainer">
         <div id="tabs">
-            <ul>
+            <ul id="tabslist">
                 <li id="tabHeader_1" tab = "1">
-                    <tab><h1><a style="color:tomato; text-decoration: none;" href="index.php">Home</a></h1></tab>
+                    <tab><a style="color:tomato; text-decoration: none;" href="index.php">Home</a></tab>
                 </li>
                 <li id="tabHeader_2" tab = "1">
-                    <tab><h1><a style="color:white; text-decoration: none;" href="presentation.php">Presentation</a></h1></tab>
+                    <tab><a style="color:white; text-decoration: none;" href="presentation.php">Presentation</a></tab>
                 </li>
                 <li id="tabHeader_3" tab = "1">
-                    <tab><h1><a style="color:white; text-decoration: none;" href="test.php">Test</a></h1></tab>
+                    <tab><a style="color:white; text-decoration: none;" href="test.php">Test</a></tab>
                 </li>
                 <li tab = "0">
-                     <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><h1><a>Administration</a></h1></dt>
+                     <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><a>Administration</a></dt>
                 </li>
                 <li>
-                    <tab><h1><a style="color:white; text-decoration: none;" href="contact.php">Contact Us</a></h1></tab>
+                    <tab><a style="color:white; text-decoration: none;" href="contact.php">Contact Us</a></tab>
                 </li>
             </ul>
             <div id="dropdown">
@@ -94,7 +94,7 @@
     <!--<div id="midline" style = "height:100%; width:1px; background-color:pink; position:absolute; left:50%;"></div>-->
     <img id="logo" src="images/logo.png"/>
     <div id="testfont">
-        <h1> </h1>
+         
     </div>
 
     <script src="js/index.js"></script>

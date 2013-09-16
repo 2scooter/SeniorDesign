@@ -22,7 +22,7 @@ html, body {
 	left:50%;
 	color:white;
 	font-size:40px;
-	margin-left:-65px;
+    margin-left: -52.5px;
 	position:absolute;
 }
 #headerText{
@@ -40,7 +40,7 @@ html, body {
 	left:50%;
 	color:white;
 	font-size:18px;
-	margin-left:-102.5px;
+    margin-left: -74.5px;
 	margin-top:75px;
 	position:absolute;
 }
@@ -107,17 +107,19 @@ background-image: radial-gradient(ellipse farthest-side at center, #000000 0%, #
 }
 /*the controls for the tabs*/
 #tabs{
-	margin-top: -75px;
+    font-size: 18px;
+    font-weight: bold;
+	margin-top: -80px;
 	height:2px;
-	margin-left:-300px;
+	margin-left:-353px;
 	color:white;
     font-family: 'Cinzel Decorative', cursive;
 	position:absolute;
 	left:50%;
 }
 #tabs > ul{
-	font-size: 0.35em;
 	list-style:none;
+
 }
 #tabs > ul > li{
 	padding:7px 10px;
