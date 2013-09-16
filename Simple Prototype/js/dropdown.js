@@ -6,7 +6,7 @@ function ddMenu(id,d){
   var h = document.getElementById(id + '-ddheader');
   var c = document.getElementById(id + '-ddcontent');
   var container = document.getElementById(id + '-ddcontainer');
-  container.setAttribute('style', 'margin-left: -' + '265' + 'px; width:0; height:0; position:absolute; margin-top:60px;');
+  container.setAttribute('style', 'margin-left: -' + '180' + 'px; width:0; height:0; position:absolute; margin-top:52px;');
   clearInterval(c.timer);
   if(d == 1){
     clearTimeout(h.timer);

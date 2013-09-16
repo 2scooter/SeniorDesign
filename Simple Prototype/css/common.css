@@ -111,7 +111,7 @@ background-image: radial-gradient(ellipse farthest-side at center, #000000 0%, #
     font-weight: bold;
 	margin-top: -80px;
 	height:2px;
-	margin-left:-353px;
+	margin-left:-333px;
 	color:white;
     font-family: 'Cinzel Decorative', cursive;
 	position:absolute;
@@ -119,6 +119,7 @@ background-image: radial-gradient(ellipse farthest-side at center, #000000 0%, #
 }
 #tabs > ul{
 	list-style:none;
+    -webkit-padding-start: 0px;
 
 }
 #tabs > ul > li{

@@ -50,10 +50,11 @@
                     <dl class="dropdown">
                         <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
                             <div id="whiteLine" style="width:950px; height:2px; background-color:white; margin-top:20px; left:50%; margin-left:-475px; position:absolute;"></div>
-                            <ul style="margin-left:-230px;">
-                              <li id="tabHeader_7" tab = "1"><a>1</a></li>
-                              <li id="tabHeader_8" tab = "1"><a>2</a></li>
-                              <li id="tabHeader_9" tab = "1"><a>3</a></li>
+                            <ul style="margin-left:-425px;">
+                              <li id="tabHeader_7" tab = "1"><a>View Judges</a></li>
+                              <li id="tabHeader_8" tab = "1"><a>Edit Users</a></li>
+                                <li id="tabHeader_9" tab = "1"><a>Edit Presentation</a></li>
+                                <li id="tabHeader_10" tab = "1"><a>Edit Test</a></li>
                             </ul>
                         </dd>
                     </dl>
