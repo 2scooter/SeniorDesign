@@ -25,39 +25,39 @@
 <div id="tabspace"></div>
 
 <div id="Main">
-    <div id="tabs">
-        <ul id="tabslist">
-            <li id="tabHeader_1" tab = "1">
-                <tab><a style="color:white; text-decoration: none;" href="index.php">Home</a></tab>
-            </li>
-            <li id="tabHeader_2" tab = "1">
-                <tab><a style="color:white; text-decoration: none;" href="presentation.php">Presentation</a></tab>
-            </li>
-            <li id="tabHeader_3" tab = "1">
-                <tab><a style="color:tomato; text-decoration: none;" href="test.php">Test</a></tab>
-            </li>
-            <li tab = "0">
-                <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><a style="color:white;">Administration</a></dt>
-            </li>
-            <li>
-                <tab><a style="color:white; text-decoration: none;" href="contact.php">Contact Us</a></tab>
-            </li>
-        </ul>
-        <div id="dropdown">
-            <div id="one-ddcontainer">
-                <dl class="dropdown">
-                    <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
-                        <div id="whiteLine" style="width:950px; height:2px; background-color:white; margin-top:20px; left:50%; margin-left:-475px; position:absolute;"></div>
-                        <ul style="margin-left:-425px;">
-                            <li id="tabHeader_7" tab = "1"><a>View Judges</a></li>
-                            <li id="tabHeader_8" tab = "1"><a>Edit Users</a></li>
-                            <li id="tabHeader_9" tab = "1"><a>Edit Presentation</a></li>
-                            <li id="tabHeader_10" tab = "1"><a>Edit Test</a></li>
-                        </ul>
-                    </dd>
-                </dl>
-            </div>
-        </div>
+     <div id="tabs">
+         <ul id="tabslist">
+             <li id="tabHeader_1" tab = "1">
+                 <tab><a style="text-decoration: none;" href="index.php">Home</a></tab>
+             </li>
+             <li id="tabHeader_2" tab = "1">
+                 <tab><a style="text-decoration: none;" href="presentation.php">Presentation</a></tab>
+             </li>
+             <li id="tabHeader_3" tab = "1">
+                 <tab><a style="color:tomato; text-decoration: none;" href="test.php">Test</a></tab>
+             </li>
+             <li tab = "0">
+                 <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><a style="text-decoration: none;">Administration</a></dt>
+             </li>
+             <li>
+                 <tab><a style="text-decoration: none;" href="contact.php">Contact Us</a></tab>
+             </li>
+         </ul>
+         <div id="dropdown">
+             <div id="one-ddcontainer">
+                 <dl class="dropdown">
+                     <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
+                         <div id="whiteLine" style="width:950px; height:2px; background-color:white; margin-top:20px; left:50%; margin-left:-475px; position:absolute;"></div>
+                         <ul style="margin-left:-425px;">
+                             <li id="tabHeader_7" tab = "1"><a href="judges.php">View Judges</a></li>
+                             <li id="tabHeader_8" tab = "1"><a style="text-decoration: none;" href="users.php">Edit Users</a></li>
+                             <li id="tabHeader_9" tab = "1"><a>Edit Presentation</a></li>
+                             <li id="tabHeader_10" tab = "1"><a>Edit Test</a></li>
+                         </ul>
+                     </dd>
+                 </dl>
+             </div>
+         </div>
     </div>
 
     <div id="content">

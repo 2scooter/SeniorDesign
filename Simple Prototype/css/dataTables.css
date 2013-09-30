@@ -1,0 +1,90 @@
+div.dataTables_length label {
+    width: 460px;
+    float: left;
+    text-align: left;
+}
+
+div.dataTables_length select {
+    width: 75px;
+}
+
+div.dataTables_filter label {
+    /*float: right;*/
+    width: 460px;
+}
+
+div.dataTables_info {
+    padding-top: 8px;
+}
+
+div.dataTables_paginate {
+    float: right;
+    margin: 0;
+}
+
+table {
+    margin: 1em 0;
+    clear: both;
+}
+
+table.dataTable th:active {
+    outline: none;
+}
+
+table.dataTable thead th {
+    text-align: left;
+}
+
+table.dataTable tbody td {
+    text-align: left;
+}
+
+table.table th,
+table.table td {
+    padding: 8px 10px;
+}
+
+
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+    cursor: pointer;
+    *cursor: hand;
+}
+
+table.table thead .sorting {
+    background: url('../images/sort_both.png') no-repeat center right;
+
+}
+table.table thead .sorting_asc {
+    background: url('../images/sort_asc.png') no-repeat center right;
+}
+
+table.table thead .sorting_desc {
+    background: url('../images/sort_desc.png') no-repeat center right;
+}
+
+table.table thead .sorting_asc_disabled {
+    background: url('../images/sort_asc_disabled.png') no-repeat center right;
+}
+
+table.table thead .sorting_desc_disabled {
+    background: url('../images/sort_desc_disabled.png') no-repeat center right;
+}
+
+div#metricClick{
+    cursor: pointer;
+    *cursor: hand;
+}
+
+a#removeButton{
+    background: #ccc url('../images/ignore_button.png') no-repeat center center;
+    text-align: center;
+    padding-left: 24px;
+    float:right;
+    height: 24px;
+    cursor: pointer;
+    *cursor: hand;
+}
