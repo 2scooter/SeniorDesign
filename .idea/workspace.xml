@@ -6,16 +6,18 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380518125433" ignored="false" />
     <file path="/index.php" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1379355543605" ignored="false" />
-    <file path="/contact.php" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1379309155095" ignored="false" />
+    <file path="/contact.php" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380521139842" ignored="false" />
     <file path="/a.groovy" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1379309208435" ignored="false" />
     <file path="/a.html" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1379309211547" ignored="false" />
     <file path="/a.xml" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1379309216024" ignored="false" />
     <file path="/common.css" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380519310731" ignored="false" />
     <file path="/dropdown.js" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1379356605013" ignored="false" />
-    <file path="/presentation.php" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380514408056" ignored="false" />
+    <file path="/presentation.php" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380522833540" ignored="false" />
     <file path="/windowsizer.js" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380490289421" ignored="false" />
     <file path="/brokenthings.html" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380509503993" ignored="false" />
     <file path="/test.php" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380519470089" ignored="false" />
+    <file path="/judges.php" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380521239331" ignored="false" />
+    <file path="/users.php" changelist="454a91c8-ba3e-45be-8839-ed3444e7b11c" time="1380522013666" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,10 +77,10 @@
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="users.php" pinned="false" current="false" current-in-tab="false">
+            <file leaf-file-name="users.php" pinned="false" current="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/Simple Prototype/users.php">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="12" column="3" selection-start="700" selection-end="1077" vertical-scroll-proportion="0.0">
+                  <state line="43" column="87" selection-start="2391" selection-end="2391" vertical-scroll-proportion="0.4871795">
                     <folding />
                   </state>
                 </provider>
@@ -87,25 +89,16 @@
             <file leaf-file-name="common.css" pinned="false" current="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/Simple Prototype/css/common.css">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="25" column="51" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0">
+                  <state line="62" column="34" selection-start="1131" selection-end="1131" vertical-scroll-proportion="-12.08">
                     <folding />
                   </state>
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="test.php" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/Simple Prototype/test.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="32" column="31" selection-start="1379" selection-end="1379" vertical-scroll-proportion="0.0">
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="contact.php" pinned="false" current="false" current-in-tab="true">
+            <file leaf-file-name="contact.php" pinned="false" current="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/Simple Prototype/contact.php">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="20" column="49" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.51282054">
+                  <state line="54" column="73" selection-start="3450" selection-end="3450" vertical-scroll-proportion="0.0">
                     <folding />
                   </state>
                 </provider>
@@ -125,7 +118,16 @@
       <file leaf-file-name="presentation.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Simple Prototype/presentation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="77" selection-start="1292" selection-end="1292" vertical-scroll-proportion="0.0">
+            <state line="22" column="52" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Simple Prototype/test.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="162" selection-start="1852" selection-end="1852" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -134,7 +136,7 @@
       <file leaf-file-name="judges.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Simple Prototype/judges.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="73" selection-start="1732" selection-end="1732" vertical-scroll-proportion="0.720504">
+            <state line="36" column="52" selection-start="2057" selection-end="2057" vertical-scroll-proportion="0.35051546">
               <folding />
             </state>
           </provider>
@@ -174,11 +176,11 @@
         <option value="$PROJECT_DIR$/Simple Prototype/brokenthings.html" />
         <option value="$PROJECT_DIR$/Simple Prototype/js/bootstrap.min.js" />
         <option value="$PROJECT_DIR$/Simple Prototype/css/common.css" />
-        <option value="$PROJECT_DIR$/Simple Prototype/test.php" />
         <option value="$PROJECT_DIR$/Simple Prototype/presentation.php" />
         <option value="$PROJECT_DIR$/Simple Prototype/users.php" />
-        <option value="$PROJECT_DIR$/Simple Prototype/judges.php" />
         <option value="$PROJECT_DIR$/Simple Prototype/contact.php" />
+        <option value="$PROJECT_DIR$/Simple Prototype/test.php" />
+        <option value="$PROJECT_DIR$/Simple Prototype/judges.php" />
       </list>
     </option>
   </component>
@@ -613,44 +615,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Simple Prototype/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="31" selection-start="1379" selection-end="1379" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Simple Prototype/css/common.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="51" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Simple Prototype/users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="3" selection-start="700" selection-end="1077" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Simple Prototype/presentation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="77" selection-start="1292" selection-end="1292" vertical-scroll-proportion="0.0">
+        <state line="62" column="34" selection-start="1131" selection-end="1131" vertical-scroll-proportion="-12.08">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Simple Prototype/contact.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="49" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.51282054">
+        <state line="54" column="73" selection-start="3450" selection-end="3450" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simple Prototype/users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="87" selection-start="2391" selection-end="2391" vertical-scroll-proportion="0.4871795">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simple Prototype/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="162" selection-start="1852" selection-end="1852" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simple Prototype/presentation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="52" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Simple Prototype/judges.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="73" selection-start="1732" selection-end="1732" vertical-scroll-proportion="0.720504">
+        <state line="36" column="52" selection-start="2057" selection-end="2057" vertical-scroll-proportion="0.35051546">
           <folding />
         </state>
       </provider>

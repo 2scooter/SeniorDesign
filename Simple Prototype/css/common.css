@@ -58,7 +58,7 @@ html, body {
 	position:absolute;
 	left: 50%;
 	margin-left:-425px;
-    margin-top: -730px;
+    margin-top: 0px;
 }
 .tabpage{
 	margin-top:25px;
