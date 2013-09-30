@@ -41,7 +41,7 @@
                     <div id="one-ddcontainer">
                         <dl class="dropdown">
                             <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
-                                <div id="whiteLine" style="width:950px; height:2px; background-color:white; margin-top:20px; left:50%; margin-left:-475px; position:absolute;"></div>
+                                <div id="whiteLine" style="width:950px; height:2px; background-color:white; margin-top:3px; left:50%; margin-left:-475px; position:absolute;"></div>
                                 <ul style="margin-left:-425px;">
                                     <li id="tabHeader_7" tab = "1"><a style="text-decoration: none;" href="judges.php">View Judges</a></li>
                                     <li id="tabHeader_8" tab = "1"><a style="text-decoration: none;" href="users.php">Edit Users</a></li>
@@ -119,8 +119,11 @@
                                 <img id="slide" src="images/m1/Slide20.PNG"/>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
+            <a href="#myCarousel" data-slide="prev" style="margin-top: -100px; margin-left: 280px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Previous</a>
+            <a href="#myCarousel" data-slide="next" style="margin-top: -100px; margin-left: 374px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Next</a>
         </div>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

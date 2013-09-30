@@ -43,7 +43,7 @@
                         <div id="one-ddcontainer">
                             <dl class="dropdown">
                                 <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
-                                    <div style="width:950px; height:2px; background-color:white; margin-top:20px; left:50%; margin-left:-475px; position:absolute;"></div>
+                                    <div style="width:950px; height:2px; background-color:white; margin-top:3px; left:50%; margin-left:-475px; position:absolute;"></div>
                                     <ul style="margin-left:-425px;">
                                         <li id="tabHeader_7" tab = "1"><a style="text-decoration: none;" href="judges.php">View Judges</a></li>
                                         <li id="tabHeader_8" tab = "1"><a style="text-decoration: none;" href="users.php">Edit Users</a></li>

@@ -14,54 +14,52 @@
                 <div id="headerText">
                     Regional Science and Engineering Challenge
                 </div>
-                <div id="whiteline" style="height:2px; background-color: white; width:700px; margin-left:auto; margin-right:auto; top: 40px;"></div>
+                <div id="whiteline" style="height:2px; background-color : white;width:700px; margin-left:auto; margin-right:auto; top: 40px;"></div>
             </div>
         </div>
         <div id="tabspace"></div>
 
         <div id="Main">
-             <div id="tabs">
-                 <ul id="tabslist">
-                     <li id="tabHeader_1" tab = "1">
-                         <tab><a style="text-decoration: none;" href="index.php">Home</a></tab>
-                     </li>
-                     <li id="tabHeader_2" tab = "1">
-                         <tab><a style="text-decoration: none;" href="presentation.php">Presentation</a></tab>
-                     </li>
-                     <li id="tabHeader_3" tab = "1">
-                         <tab><a style="color:tomato; text-decoration: none;" href="test.php">Test</a></tab>
-                     </li>
-                     <li tab = "0">
-                         <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><a style="text-decoration: none;">Administration</a></dt>
-                     </li>
-                     <li>
-                         <tab><a style="text-decoration: none;" href="contact.php">Contact Us</a></tab>
-                     </li>
-                 </ul>
-                 <div id="dropdown">
-                     <div id="one-ddcontainer">
-                         <dl class="dropdown">
-                             <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
-                                 <div id="whiteLine" style="width:950px; height:2px; background-color:white; margin-top:20px; left:50%; margin-left:-475px; position:absolute;"></div>
-                                 <ul style="margin-left:-425px;">
-                                     <li id="tabHeader_7" tab = "1"><a style="text-decoration: none;" href="judges.php">View Judges</a></li>
-                                     <li id="tabHeader_8" tab = "1"><a style="text-decoration: none;" href="users.php">Edit Users</a></li>
-                                     <li id="tabHeader_9" tab = "1"><a style="text-decoration: none;">Edit Presentation</a></li>
-                                     <li id="tabHeader_10" tab = "1"><a style="text-decoration: none;">Edit Test</a></li>
-                                 </ul>
-                             </dd>
-                         </dl>
-                     </div>
-                 </div>
+            <div id="tabs">
+                <ul id="tabslist">
+                    <li id="tabHeader_1" tab = "1">
+                        <tab><a style="text-decoration: none;" href="index.php">Home</a></tab>
+                    </li>
+                    <li id="tabHeader_2" tab = "1">
+                        <tab><a style="text-decoration: none;" href="presentation.php">Presentation</a></tab>
+                    </li>
+                    <li id="tabHeader_3" tab = "1">
+                        <tab><a style="color:tomato; text-decoration: none;" href="test.php">Test</a></tab>
+                    </li>
+                    <li tab = "0">
+                        <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><a style="text-decoration: none;">Administration</a></dt>
+                    </li>
+                    <li>
+                        <tab><a style="text-decoration: none;" href="contact.php">Contact Us</a></tab>
+                    </li>
+                </ul>
+                <div id="dropdown">
+                    <div id="one-ddcontainer">
+                        <dl class="dropdown">
+                            <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
+                                <div id="whiteLine" style="width:950px; height:2px; background-color:white; margin-top:3px; left:50%; margin-left:-475px; position:absolute;"></div>
+                                <ul style="margin-left:-425px;">
+                                    <li id="tabHeader_7" tab = "1"><a href="judges.php">View Judges</a></li>
+                                    <li id="tabHeader_8" tab = "1"><a style="text-decoration: none;" href="users.php">Edit Users</a></li>
+                                    <li id="tabHeader_9" tab = "1"><a>Edit Presentation</a></li>
+                                    <li id="tabHeader_10" tab = "1"><a>Edit Test</a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
             </div>
-
             <div id="content">
                 <div id="content_inner">
                     <div id="myCarousel" class="carousel slide" height="inherit">
                         <div class="carousel-inner" height="inherit">
                             <div class="item active" height="inherit">
-                                <h1>
-                                    Question 1</h1>
+                                <h1>Question 1</h1>
                                 <p>
                                     <font size="6"> When introducing yourself to the student, you should?</font>
                                 </p>
@@ -123,13 +121,17 @@
                                     in your order of projects (first, second, etc.) and when they should expect you.<br>
                                     <br>
                                     <input type="radio" name="group1" value="A">
-                                    None of the above</div>
+                                    None of the above
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <a href="#myCarousel" data-slide="prev" style="margin-top: -100px; margin-left: 280px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Previous</a>
+            <a href="#myCarousel" data-slide="next" style="margin-top: -100px; margin-left: 374px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Next</a>
         </div>
+
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
