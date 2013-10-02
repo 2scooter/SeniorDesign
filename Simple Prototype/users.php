@@ -8,16 +8,6 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
   }
   $result = mysqli_query($con,"SELECT * FROM users");
 
-  
-  $_SESSION['email'] = $row['email'];
-  $_SESSION['accesslevel'] = $row['accesslevel'];
-  $_SESSION['testprogress'] = $row['testprogress'];
-  $_SESSION['testscore'] = $row['testscore'];
-  $_SESSION['trainingprogress'] = $row['trainingprogress'];
-  
-  
-
-
  mysqli_close($con);
 
 
