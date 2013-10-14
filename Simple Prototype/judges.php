@@ -1,3 +1,17 @@
+<?php session_start();
+
+$con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
+  // Check connection
+  if (mysqli_connect_errno($con))
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  $result = mysqli_query($con,"SELECT * FROM users");
+
+ mysqli_close($con);
+
+
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
     <head>
@@ -56,6 +70,43 @@
                     </div>
                 </div>
             </div>
+        <div class="container" style="margin-top:30px;">
+            <table class="table table-striped" id="user-content">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Access Level</th>
+                        <th>Test Progress</th>
+                        <th>Test Score</th>
+                        <th>Training Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        while($row = mysqli_fetch_array($result))
+                        {
+                            echo "<tr>";
+                            echo "<td>";
+                            echo $row['email'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['accesslevel'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['testprogress'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['testscore'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['trainingprogress'];
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+        </div>
 
 
 
@@ -115,10 +166,35 @@
         </div>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="tableEdit.js"></script>
         <script src="js/judges.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/paging.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                    $(document).ready( function () {
+                    var oTable = $('#user-content').dataTable( {
+                    "bPaginate": false
+                    } );
+                       /* Apply the jEditable handlers to the table */
+                        oTable.$('#accesslevel').editable( 'submit.php', {
+                            "callback": function( sValue, y ) {
+                                var aPos = oTable.fnGetPosition( this );
+                                oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+                            },
+                            "submitdata": function ( value, settings ) {
+                                return {
+                                    "row_id": $(this).closest("tr").attr('id') ,
+                                    "column": $(this).closest("td").attr('id')
+                                };
+                            },
+                        data   : " {'E':'Admin','F':'View-Only','G':'User', 'selected':'G'}",
+                        type   : 'select',
+                            "height": "30px",
+                            "width": "100%",
+                        } );
+                    } );
+        		</script>
         <script type="text/javascript" src="js/dropdown.js"></script>
 
     </body>

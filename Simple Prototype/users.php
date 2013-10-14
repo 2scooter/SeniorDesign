@@ -6,7 +6,8 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  $result = mysqli_query($con,"SELECT * FROM users");
+  $result = mysqli_query($con,"SELECT * FROM users"); 
+
 
  mysqli_close($con);
 
@@ -18,9 +19,11 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/bootstrap-formhelpers.css">
+        <link rel="stylesheet" href="css/modal.css">
         <link rel="stylesheet" href="css/dataTables.css">
-        <link href="css/common.css" rel="stylesheet" type="text/css">
-        <link href='http://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/common.css" type="text/css">
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Black+Ops+One' type='text/css'>
         <link rel="stylesheet" href="css/dropdown.css" type="text/css" />
     </head>
     <body>
@@ -37,7 +40,7 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
             <div id="tabContainer">
                 <div style="margin-top:-45px;" id="tabs">
                     <ul id="tabslist">
-                        <li id="tabHeader_1" tab = "1">
+                        <li id="tabHader_1" tab = "1">
                             <tab><a style="text-decoration: none;" href="index.php">Home</a></tab>
                         </li>
                         <li id="tabHeader_2" tab = "1">
@@ -71,63 +74,92 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
                 </div>
             </div>
 
-
             <div class="container" style="margin-top:30px;">
                 <table class="table table-striped" id="user-content">
-                   <thead>
+                    <thead>
                         <tr>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Access Level</th>
+                            <th>Training Progress</th>
                             <th>Test Progress</th>
                             <th>Test Score</th>
-                            <th>Training Progress</th>
+                            <th>Information</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
-                    while($row = mysqli_fetch_array($result))
-                    {
-                        echo "<tr>";
-                        echo "<td>";
-                        echo $row['email'];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row['accesslevel'];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row['testprogress'];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row['testscore'];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row['trainingprogress'];
-                        echo "</td>";
-                        echo "</tr>";                    
-                    }                    
+                        while($row = mysqli_fetch_array($result))
+                        {
+                            echo '<tr id = "'. $row['accountid'] . '">';
+                            echo '<td id = "name">';
+                            echo $row['first_name'];
+                            echo " ";
+                            echo $row['last_name'];
+                            echo "</td>";
+                            echo '<td id = "emailCell">';
+                            echo $row['email'];
+                            echo "</td>";
+                            echo '<td id = "accesslevel">';
+                            echo $row['accesslevel'];
+                            echo "</td>";
+                            echo "</td>";
+                            echo '<td id = "trainingprogress">';
+                            echo $row['trainingprogress'];
+                            echo "</td>";
+                            echo '<td id = "testprogress">';
+                            echo $row['testprogress'];
+                            echo "</td>";
+                            echo '<td id = "testscore">';
+                            echo $row['testscore'];
+                            echo '<td id = "info">';
+                            echo '<a id="infoButton" href="#" class="btn">Info</a>';
+                            echo "</td>";
+                            echo "</tr>";
+                        }
                     ?>
-                    </tbody>     
+                    </tbody>
                 </table>
             </div>
         </div>
 
-        <div class="modal hide fade" id="info-modal">
+        <div class="modal fade" id="info-modal">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
                 </button>
                 <h3>
                 </h3>
-                <h5>
-                </h5>
+                <h4>
+                </h4>
+                <div class="bfh-selectbox" style="margin-left:5%;">
+                    <input type="hidden" name="selectbox3" value="">
+                    <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
+                        <span class="bfh-selectbox-option input-medium" id="accountType"></span>
+                        <b class="caret"></b>
+                    </a>
+                    <div class="bfh-selectbox-options">
+                        <div role="listbox">
+                            <ul role="option" id="idSelectbox">
+                            <li><a tabindex="-1" href="#" data-option="1">Admin</a></li>
+                            <li><a tabindex="-1" href="#" data-option="2">View-Only</a></li>
+                            <li><a tabindex="-1" href="#" data-option="3">Judge</a></li>
+                            </ul>
+                        </div>
+                    </div>
+               </div>
             </div>
             <div class="modal-body">
-                <p>
-                </p>
+                <h5>Email:</h5>
+                <input type="text" id="email" size="50"/>
+                <h5>Phone:</h5>
+                <input type="text" id="phone" size="50"/>
+                <h5>Address:</h5>
+                <input type="text" id="address" size="50"/>
             </div>
             <div class="modal-footer">
-                <a id="history-link" href="#" class="btn btn-primary" style="float:left;">
-                    Metric history
+                <a id="info-modal-save" href="#" class="btn btn-primary">
+                   Save
                 </a>
                 <a id="info-modal-close" href="#" class="btn">
                     Close
@@ -135,32 +167,20 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
             </div>
         </div>
 
-        <div class="modal hide fade" id="message-modal">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4>
-                </h4>
-            </div>
-            <div class="modal-body">
-                <h5>
-                </h5>
-            </div>
-            <div class="modal-footer">
-                <a id="message-modal-close" href="#" class="btn btn-primary">
-                    Close
-                </a>
-            </div>
-        </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="js/tableEdit.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
+        <script src="js/bootstrap-formhelpers-selectbox.js"></script>
         <script type="text/javascript" src="js/dropdown.js"></script>
-        <script type="text/javascript" charset="utf-8">
-    		$(document).ready(function() {
-				$('#user-content').dataTable();
-			} );
-		</script>
+        <script src="js/user.js"></script>
+        
+        <script type="text/javascript">    
+            $(document).ready(function () {
+                $(document).on('change','select', function () {
+                     $(this).closest("form").submit();
+                });
+            });
+        </script>
     </body>
 </html>
