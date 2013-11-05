@@ -1,3 +1,12 @@
+<?php session_start();
+include('loginscript.php');
+if(isset($_SESSION['identifier']))
+{
+    
+}
+else
+    header('Location: login.php');
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
     <head>
@@ -58,6 +67,31 @@
                 <div id="content_inner">
                     <div id="myCarousel" class="carousel slide" height="inherit">
                         <div class="carousel-inner" height="inherit">
+                        
+                            <?php
+                             $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");                            
+                             if (mysqli_connect_errno($con))
+                             {
+                              echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                             }
+                             $result = mysqli_query($con,"SELECT * FROM presentation");
+                             $count = 0;
+                             while($row = mysqli_fetch_array($result))
+                             {
+                              if($count == 0)
+                              {
+                                  echo '<div class = "item active" height = "inherit">';
+                              }
+                              else
+                                echo '<div class = "item">';
+                              echo '<img id="slide" src=' . $row['imageurl'] . '>';
+                              echo '</div>';
+                              $count++;
+                             }
+                            
+                            ?>
+
+                            <!--
                             <div class="item active" height="inherit">
                                 <img id="slide" src="images/m1/Slide1.PNG"/>
                             </div>
@@ -116,8 +150,10 @@
                                 <img id="slide" src="images/m1/Slide19.PNG"/>
                             </div>
                             <div class="item">
-                                <img id="slide" src="images/m1/Slide20.PNG"/>
+                                <img id="slide" src="images/m1/Slide20.PNG"/>                                
                             </div>
+                            -->
+                            
                         </div>
                     </div>
                 </div>

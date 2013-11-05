@@ -1,12 +1,25 @@
 <?php session_start();
 
+
+
+
 $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
   // Check connection
   if (mysqli_connect_errno($con))
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
+  if(!empty($_POST['accountid']))
+  {
+      mysqli_query($con, '
+      UPDATE users 
+      SET email = "' . $_POST["email"] . 
+      '"SET accesslevel = "' . $_POST["accesslevel"] .
+      '"WHERE accountid = "' . $_POST["accountid"] .'"');
+  } 
   $result = mysqli_query($con,"SELECT * FROM users"); 
+
+  
 
 
  mysqli_close($con);
@@ -25,7 +38,7 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
         <link rel="stylesheet" href="css/common.css" type="text/css">
         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Black+Ops+One' type='text/css'>
         <link rel="stylesheet" href="css/dropdown.css" type="text/css" />
-    </head>
+     </head>
     <body>
         <div id="wrapper">
             <img id="logo" src="images/logo.png"/>
@@ -128,22 +141,22 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
                 </button>
-                <h3>
-                </h3>
-                <h4>
-                </h4>
+                <h3></h3>
+                <h4></h4>
+                <h6></h6>
+                <form action="submit.php" method="post" id="adminform">
                 <div class="bfh-selectbox" style="margin-left:5%;">
-                    <input type="hidden" name="selectbox3" value="">
+                    <input type="hidden" id="access" name="accesslevel" value="Admin">
                     <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
-                        <span class="bfh-selectbox-option input-medium" id="accountType"></span>
+                        <span class="bfh-selectbox-option bfh-selectbox-medium" data-option="Admin">Admin</span>
                         <b class="caret"></b>
                     </a>
                     <div class="bfh-selectbox-options">
                         <div role="listbox">
                             <ul role="option" id="idSelectbox">
-                            <li><a tabindex="-1" href="#" data-option="1">Admin</a></li>
-                            <li><a tabindex="-1" href="#" data-option="2">View-Only</a></li>
-                            <li><a tabindex="-1" href="#" data-option="3">Judge</a></li>
+                            <li><a tabindex="-1" href="#" data-option="Admin">Admin</a></li>
+                            <li><a tabindex="-1" href="#" data-option="View-Only">View-Only</a></li>
+                            <li><a tabindex="-1" href="#" data-option="Judge">Judge</a></li>
                             </ul>
                         </div>
                     </div>
@@ -151,36 +164,30 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
             </div>
             <div class="modal-body">
                 <h5>Email:</h5>
-                <input type="text" id="email" size="50"/>
+                <input type="text" id="email" name="email" size="50"/>
                 <h5>Phone:</h5>
-                <input type="text" id="phone" size="50"/>
+                <input type="text" id="phone" name="phone" size="50"/>
                 <h5>Address:</h5>
-                <input type="text" id="address" size="50"/>
+                <input type="text" id="address" name="address" size="50"/>
+                <input type="hidden" id="accountid" name="accountid"/>
             </div>
             <div class="modal-footer">
                 <a id="info-modal-save" href="#" class="btn btn-primary">
-                   Save
+                    Save
                 </a>
                 <a id="info-modal-close" href="#" class="btn">
                     Close
                 </a>
+                </form>
             </div>
         </div>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script src="js/tableEdit.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/bootstrap-formhelpers-selectbox.js"></script>
         <script type="text/javascript" src="js/dropdown.js"></script>
         <script src="js/user.js"></script>
-        
-        <script type="text/javascript">    
-            $(document).ready(function () {
-                $(document).on('change','select', function () {
-                     $(this).closest("form").submit();
-                });
-            });
-        </script>
+
     </body>
 </html>

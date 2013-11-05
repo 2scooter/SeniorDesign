@@ -9,20 +9,19 @@ $(document).ready(function() {
         level = row.find('td:eq(2)').text();
         email = row.find('td:eq(1)').text();
 
-        $('#info-modal').find('.modal-header > h3').text(name).end();
-        $('#info-modal').find('.modal-header > h4').text(level).end();
+        $('#info-modal').find('.modal-header > h3').text(name);
+        $('#info-modal').find('.modal-header > h4').text(level);
         $('#info-modal').find('.modal-header > h6').text("Account ID: " + row.attr('id')).end();
-        $('#accountType').text(level);
         $('#email').val(email);
+        $('#accountid').val(row.attr('id'));
         $('#phone').val("");
         $('#address').val("");
         $('#info-modal').modal('show');
     });
-
-    $('#info-modal-close').on('click', function() {
-        $('#info-modal').modal('hide');
-    });
-
+    $('#info-modal-save').on('click',function() {
+        $('#adminform').submit();       
+    });    
+ 
     $('#info-modal-close').on('click', function() {
         $('#info-modal').modal('hide');
     });
