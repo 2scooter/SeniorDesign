@@ -144,7 +144,7 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
                 <h3></h3>
                 <h4></h4>
                 <h6></h6>
-                <form action="submit.php" method="post" id="adminform">
+                <form action="users.php" method="post" id="adminform">
                 <div class="bfh-selectbox" style="margin-left:5%;">
                     <input type="hidden" id="access" name="accesslevel" value="Admin">
                     <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
