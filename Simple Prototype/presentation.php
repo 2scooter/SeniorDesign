@@ -2,7 +2,7 @@
 include('loginscript.php');
 if(isset($_SESSION['identifier']))
 {
-    
+
 }
 else
     header('Location: login.php');
@@ -63,100 +63,125 @@ else
                 </div>
             </div>
 
-            <div id="content">
-                <div id="content_inner">
-                    <div id="myCarousel" class="carousel slide" height="inherit">
-                        <div class="carousel-inner" height="inherit">
-                        
-                            <?php
-                             $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");                            
-                             if (mysqli_connect_errno($con))
-                             {
-                              echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                             }
-                             $result = mysqli_query($con,"SELECT * FROM presentation");
-                             $count = 0;
-                             while($row = mysqli_fetch_array($result))
-                             {
-                              if($count == 0)
-                              {
-                                  echo '<div class = "item active" height = "inherit">';
-                              }
-                              else
-                                echo '<div class = "item">';
-                              echo '<img id="slide" src=' . $row['imageurl'] . '>';
-                              echo '</div>';
-                              $count++;
-                             }
-                            
-                            ?>
+            <div id="content" style="height:458px;">
+                <div id="content_inner" style="
+                ">
+                  <div id="slidelist" style="
+                    width: 200px;
+                    position: absolute;
+                    height: 456px;
+                    margin-left: -25px;
+                    margin-top: -25px;
+                    background-color: white;
+                    border-top-left-radius: 25px;  border-bottom-left-radius: 25px;
+                ">
+                                    <center style="
+                                        border-width: 2px;
+                                        border-style: solid;
+                                        border-top-left-radius: 25px;
+                                        background-color: gray;
+                                        color: white;
+                                        position: absolute;
+                                        z-index: 200;
+                                        width: 179px;
+                ">
+                                        Question List
+                                    </center>
 
-                            <!--
-                            <div class="item active" height="inherit">
-                                <img id="slide" src="images/m1/Slide1.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide2.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide3.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide4.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide5.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide6.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide7.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide8.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide9.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide10.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide11.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide12.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide13.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide14.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide15.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide16.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide17.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide18.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide19.PNG"/>
-                            </div>
-                            <div class="item">
-                                <img id="slide" src="images/m1/Slide20.PNG"/>                                
-                            </div>
-                            -->
-                            
-                        </div>
-                    </div>
-                </div>
+                                    <center id="innerlist" style="
+                    margin-top: 25px;
+                    background-color: white;
+                ">
+                                        <div class="list-group" id="questionButton">
+                                        <a href="#" class="list-group-item active" id="1">Module 1</a> <a href="#" class="list-group-item" id="2">Module 2</a>
+                                        </div>
+                                    </center>
+                                </div>
+                                    <div id="myCarousel" class="carousel slide" height="inherit" data-interval="false" style="
+                    margin-left: 200px;
+                ">
+                                        <div class="carousel-inner" height="inherit">
+
+                                            <div class="item active" height="inherit"><img id="slide" src="images/m1/Slide1.PNG"></div><div class="item"><img id="slide" src="images/m1/Slide2.PNG"></div><div class="item">
+                                                <h1>Question 1</h1>
+                                                <p>
+                                                    <font size="6"> This is a test question.</font>
+                                                </p>
+
+                                                <div>
+                                                    <input type="radio" name="group1" value="A">
+                                                    Test answer.<br><br>
+                                                    <input type="radio" name="group1" value="B">
+                                                    Test answer two.<br><br>
+                                                    <input type="radio" name="group1" value="C">
+                                                    Test answer three.<br><br>
+                                                     </div></div>
+                                            <!--
+                                            <div class="item active" height="inherit">
+                                                <img id="slide" src="images/m1/Slide1.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide2.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide3.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide4.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide5.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide6.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide7.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide8.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide9.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide10.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide11.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide12.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide13.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide14.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide15.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide16.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide17.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide18.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide19.PNG"/>
+                                            </div>
+                                            <div class="item">
+                                                <img id="slide" src="images/m1/Slide20.PNG"/>
+                                            </div>
+                                            -->
+
+                                        </div>
+                                    </div>
+                                </div>
             </div>
             <a href="#myCarousel" data-slide="prev" style="margin-top: -100px; margin-left: 280px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Previous</a>
             <a href="#myCarousel" data-slide="next" style="margin-top: -100px; margin-left: 374px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Next</a>
