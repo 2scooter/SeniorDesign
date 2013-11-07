@@ -1,3 +1,15 @@
+<?php session_start();
+include('loginscript.php');
+if(isset($_SESSION['identifier']))
+{
+    
+}
+else
+    header('Location: login.php');
+?>
+
+
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -6,12 +18,18 @@
     <link href="css/common.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/dropdown.css" type="text/css" />
+    <link rel="stylesheet" href="css/modal.css" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap-formhelpers.css" type="text/css" />
     <link rel="stylesheet" href="css/edittest.css" type="text/css" />
 
 </head>
 <body>
-<div id="wrapper">
+<div class="modal fade" id="myModal">
+</div>
+<div id = "saveResponse">
+Save Response goes here
+</div>
+
 <!--<img id="logo" src="images/logo.png"/>-->
 <!--<div id="heads">-->
 <!--<div id="headerText">-->
@@ -21,7 +39,8 @@
 <!--</div>-->
 <!--<div id="tabspace"></div>-->
 
-<div id="Main">
+<div id="Main">               
+                
     <img id="logo" src="images/logo.png"/>
     <div id="heads">
         <div id="headerText">
@@ -86,44 +105,35 @@
                     </center>
 
                     <center id="innerlist">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item active">
-                                Cras justo odio
-                            </a>
-                            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item">Morbi leo risus</a>
-                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item">Vestibulum at eros</a>
-                            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item">Morbi leo risus</a>
-                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item">Vestibulum at eros</a>
-                            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item">Morbi leo risus</a>
-                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item">Vestibulum at eros</a>
-                            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item">Morbi leo risus</a>
-                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item">Vestibulum at eros</a>
-                            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item">Morbi leo risus</a>
-                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item">Vestibulum at eros</a>
-                            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item">Morbi leo risus</a>
-                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item">Vestibulum at eros</a>
-                            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item">Morbi leo risus</a>
-                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item">Vestibulum at eros</a>
-                            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item">Morbi leo risus</a>
-                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                            <a href="#" class="list-group-item">Vestibulum at eros</a>
+                        <div class="list-group" id="questionButton">
+                        <?php
+                             $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");                            
+                             if (mysqli_connect_errno($con))
+                             {
+                              echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                             }
+                             $result = mysqli_query($con,"SELECT * FROM testquestions");
+                             $count = 0;
+                             while($row = mysqli_fetch_array($result))
+                             {
+                              if($count == 0)
+                              {
+                                  echo '<a href="#" class="list-group-item active" id = "'. $row['questionId']. '">';
+                                  echo 'Question '. $row[questionId];
+                                  echo '</a> ';
+                              }
+                              else
+                              {                                  
+                                  echo '<a href="#" class="list-group-item" id = "'. $row['questionId']. '">';
+                                  echo 'Question '. $row[questionId];
+                                  echo '</a> ';
+                              }
+                                                 
+                              $count++;
+                             }
+                          ?>
+                        
                         </div>
-
                     </center>
                 </div>
             </center>
@@ -206,7 +216,7 @@
                     <center>
                         <button type="button" class="btn btn-default" style="margin-top:50px;">Apply</button>
                     </center>
-                </div>
+                </div>   
             </div>
         </div>
     </div>
@@ -215,6 +225,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/dropdown.js"></script>
+<script src="js/editpresentation.js"></script>
 <script src="js/presentation.js"></script>
 <script src="js/bootstrap-formhelpers-selectbox.js"></script>
 <script src="js/fileinput.js"></script>
