@@ -63,7 +63,7 @@ else
                 </div>
             </div>
 
-            <div id="content" style="height:458px;">
+           <div id="content" style="height:458px;">
                 <div id="content_inner" style="
                 ">
                   <div id="slidelist" style="
@@ -82,8 +82,8 @@ else
                                         background-color: gray;
                                         color: white;
                                         position: absolute;
-                                        z-index: 200;
-                                        width: 179px;
+                                        z-index: 1;
+                                        width: 100%;
                 ">
                                         Question List
                                     </center>
@@ -102,82 +102,63 @@ else
                 ">
                                         <div class="carousel-inner" height="inherit">
 
-                                            <div class="item active" height="inherit"><img id="slide" src="images/m1/Slide1.PNG"></div><div class="item"><img id="slide" src="images/m1/Slide2.PNG"></div><div class="item">
-                                                <h1>Question 1</h1>
+                                                                       <?php
+                                             $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");                            
+                                             if (mysqli_connect_errno($con))
+                                             {
+                                              echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                             }
+                                             $result = mysqli_query($con,"SELECT * FROM presentation");
+                                             $count = 0;
+                                             while($row = mysqli_fetch_array($result))
+                                             {
+                                              if($count == 0)
+                                              {
+                                                  echo '<div class = "item active" height = "inherit">';
+                                              }
+                                              else
+                                                echo '<div class = "item">';
+                                             
+                                              if($row['slidetype'] == "image")
+                                              {                        
+                                               $currentQuery = mysqli_query($con,"SELECT * FROM presentationImages WHERE imageId = " . $row['imageId']);                                
+                                               while($currentRow = mysqli_fetch_array($currentQuery))
+                                                {
+                                                echo '<img id="slide" src=' . $currentRow['imageURL'] . '>'; 
+                                                }
+                                              }
+                                              else if($row['slidetype'] == "question")
+                                              {
+                                                   $currentQuery = mysqli_query($con,"SELECT * FROM presentationQuestions WHERE questionId = " . $row['questionId']); 
+                                                    while($currentRow = mysqli_fetch_array($currentQuery))
+                                                    {
+                                                    echo'                                
+                                                <h1>Question ' . $currentRow['questionId']. '</h1>
                                                 <p>
-                                                    <font size="6"> This is a test question.</font>
+                                                    <font size="6"> '. $currentRow['question'] . '</font>
                                                 </p>
-
-                                                <div>
-                                                    <input type="radio" name="group1" value="A">
-                                                    Test answer.<br><br>
+                
+                                                <div>                                                            
+                                                    <input type="radio" name="group1" value="A">                                   
+                                                    ' . $currentRow['correctAnswer'] . '<br><br>
                                                     <input type="radio" name="group1" value="B">
-                                                    Test answer two.<br><br>
+                                                    ' . $currentRow['wrongAnswerOne'] . '<br><br>
                                                     <input type="radio" name="group1" value="C">
-                                                    Test answer three.<br><br>
-                                                     </div></div>
-                                            <!--
-                                            <div class="item active" height="inherit">
-                                                <img id="slide" src="images/m1/Slide1.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide2.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide3.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide4.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide5.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide6.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide7.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide8.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide9.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide10.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide11.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide12.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide13.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide14.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide15.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide16.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide17.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide18.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide19.PNG"/>
-                                            </div>
-                                            <div class="item">
-                                                <img id="slide" src="images/m1/Slide20.PNG"/>
-                                            </div>
-                                            -->
+                                                    ' . $currentRow['wrongAnswerTwo'] . '<br><br>';
+                                                      if($ROW['wrongAnswerThree'] != '')
+                                                    echo'
+                                                    <input type="radio" name="group1" value="C">
+                                                    ' . $currentRow['wrongAnswerThree'] . '<br>';
+                                                     echo'
+                                                     </div>';
+                                                    }
+                                              }                             
+                                              echo '</div>';
+                                              $count++;
+                                    
+                                             }
+                            
+                            ?>
 
                                         </div>
                                     </div>
