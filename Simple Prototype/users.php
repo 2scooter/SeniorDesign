@@ -13,9 +13,11 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
   {
       mysqli_query($con, '
       UPDATE users 
-      SET email = "' . $_POST["email"] . 
-      '"SET accesslevel = "' . $_POST["accesslevel"] .
-      '"WHERE accountid = "' . $_POST["accountid"] .'"');
+      SET email = "' . $_POST["email"] . '",
+      accesslevel = "' . $_POST["accesslevel"] . '",
+      address = "' . $_POST["address"] . '",
+      phone = "' . $_POST["phone"] . '"     
+      WHERE accountid = "' . $_POST["accountid"] .'"');
   } 
   $result = mysqli_query($con,"SELECT * FROM users"); 
 

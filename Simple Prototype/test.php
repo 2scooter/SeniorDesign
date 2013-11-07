@@ -65,74 +65,47 @@ else
             </div>
             <div id="content">
                 <div id="content_inner">
-                    <div id="myCarousel" class="carousel slide" height="inherit">
+                    <div id="myCarousel" class="carousel slide" height="inherit" data-interval="false">
                         <div class="carousel-inner" height="inherit">
-                            <div class="item active" height="inherit">
-                                <h1>Question 1</h1>
+                        <?php                        
+                         $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
+                          // Check connection
+                          if (mysqli_connect_errno($con))
+                          {
+                          echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                          }     
+                          $count = 0;
+                          $result = mysqli_query($con,"SELECT * FROM testquestions"); 
+                          while($ROW = mysqli_fetch_array($result))
+                          {                           
+                            if($count == 0)
+                                echo'<div class="item active" height="inherit">';
+                            else
+                                echo'<div class ="item">';
+                            echo'   
+                                <h1>Question ' . $ROW['questionId']. '</h1>
                                 <p>
-                                    <font size="6"> When introducing yourself to the student, you should?</font>
+                                    <font size="6"> '. $ROW['question'] . '</font>
                                 </p>
 
-                                <div>
-                                    <input type="radio" name="group1" value="A">
-                                    Use your full name and title(s) to emphasize your expertise.<br>
-                                    <br>
+                                <div>                                                            
+                                    <input type="radio" name="group1" value="A">                                   
+                                    ' . $ROW['correctAnswer'] . '<br><br>
                                     <input type="radio" name="group1" value="B">
-                                    Warmly greet the student, introduce yourself by first and last name, and express
-                                    an interest in his/her project.<br>
-                                    <br>
+                                    ' . $ROW['wrongAnswerOne'] . '<br><br>
                                     <input type="radio" name="group1" value="C">
-                                    Greet the student casually, then let him/her know that you would like the process
-                                    to move quickly so you can leave.<br>
-                                </div>
-                            </div>
-
-                            <div class="item">
-                                <h1>
-                                    Question 2</h1>
-                                <p>
-                                    <font size="6"> When standing in front of a student, it is best to:</font>
-                                </p>
-
-                                <div>
-                                    <input type="radio" name="group1" value="A">
-                                    Stand somewhat to his/her side<br>
-                                    <br>
-                                    <input type="radio" name="group1" value="B">
-                                    Stand squarely in front of him/her, but at a comfortable distance<br>
-                                    <br>
+                                    ' . $ROW['wrongAnswerTwo'] . '<br><br>';
+                            if($ROW['wrongAnswerThree'] != '')
+                                    echo'
                                     <input type="radio" name="group1" value="C">
-                                    Stand squarely in front of the student, but close enough that you're looking down
-                                    on him/her<br>
-                                    <br>
-                                    <input type="radio" name="group1" value="D">
-                                    All of the above<br>
+                                    ' . $ROW['wrongAnswerThree'] . '<br>';
+                            echo'
                                 </div>
-                            </div>
-
-                            <div class="item">
-                                <h1>
-                                    Question 3</h1>
-                                <p>
-                                    <font size="6"> You have six projects to judge. The first thing you should do is:</font>
-                                </p>
-
-                                <div>
-                                    <input type="radio" name="group1" value="A">Head to your first project and introduce
-                                    yourself. Then, explain that you would like to hear from the student about their
-                                    project before reading his/her paper.<br>
-                                    <br>
-                                    <input type="radio" name="group1" value="A">
-                                    Stop by your first project and ask if the participant has any questions.<br>
-                                    <br>
-                                    <input type="radio" name="group1" value="A">
-                                    Visit each project on your list, giving students information about where they are
-                                    in your order of projects (first, second, etc.) and when they should expect you.<br>
-                                    <br>
-                                    <input type="radio" name="group1" value="A">
-                                    None of the above
-                                </div>
-                            </div>
+                            </div>    
+                            ';
+                            $count++;
+                          }                          
+                        ?>                            
                         </div>
                     </div>
                 </div>
