@@ -26,9 +26,6 @@ else
 <body>
 <div class="modal fade" id="myModal">
 </div>
-<div id = "saveResponse">
-Save Response goes here
-</div>
 
 <!--<img id="logo" src="images/logo.png"/>-->
 <!--<div id="heads">-->
@@ -137,10 +134,12 @@ Save Response goes here
                     </center>
                 </div>
             </center>
-            <div id="currentslide" style="font-size: .8em;">
-                <center style="margin-top:25px;">
-                    <img style="width:90%;" src="images/m1/Slide1.PNG"/>
-                </center>
+            <div id="currentslide" style="font-size: .8em; display: table">
+                <div id ="question"style="display:table-cell; vertical-align:middle; text-align:center">
+                    <div id ="questionCenter">
+
+                    </div>
+                </div>
             </div>
             <div id="controls">
 

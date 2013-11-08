@@ -1,4 +1,3 @@
-<table>
 <?php 
 
 $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
@@ -7,18 +6,10 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  $myQuery = 'UPDATE testquestions
-  SET question = "' . $_POST['question'] . '",
-  wrongAnswerOne = "' . $_POST['wrongAnswerOne'] .'",
-  wrongAnswerTwo = "' . $_POST['wrongAnswerTwo'] .'",
-  wrongAnswerThree = "' . $_POST['wrongAnswerThree'] .'",
-  correctAnswer = "' . $_POST['correctAnswer'] .'"
-  WHERE questionId = ' . $_POST['questionId'];
+  $myQuery = 'INSERT INTO testquestions(question,wrongAnswerOne,wrongAnswerTwo,wrongAnswerThree,correctAnswer)
+  VALUES ("' . $_POST['question'] . '","' . $_POST['wrongAnswerOne'] .'","' . $_POST['wrongAnswerTwo'] .'","' . $_POST['wrongAnswerThree'] .'","' . $_POST['correctAnswer'] .'")';
   if(!empty($_POST['question']))
   {      
       mysqli_query($con, $myQuery);
-  } 
-  
-
+  }
 ?>
-</table>

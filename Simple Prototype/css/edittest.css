@@ -1,7 +1,7 @@
 
 #slidelist{
     width: 200px;
-    height: 559px;
+    height: 561px;
     margin-top: -26px;
     margin-left: -700px;
     background-color: white;
@@ -30,6 +30,13 @@
     border: 2px;
     border-style: solid;
     border-color: black;
+}
+#currentslide-test{
+    width: 701px;
+    height: 560px;
+    margin-top: -559px;
+    margin-left: 172px;
+    border:none;
 }
 
 #controls{

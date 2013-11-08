@@ -14,13 +14,7 @@ mysqli_close($con);
 
 
 <?php echo'
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                &times;
-            </button>          
-        </div>
-        <div class="modal-body">            
-        <form id="newQuestionForm">     
+        <form id="oldQuestionForm">     
             <h5>Question:</h5>
             <input type="text" id="question" name="question" size="50" value = "'. $row['question'] . '"/>
             <h5>Correct Answer:</h5>
@@ -32,18 +26,9 @@ mysqli_close($con);
             <h5>Wrong Answer Three:</h5>
              <input type="text" id="wrongAnswerThree" name="wrongAnswerThree" size="50" value = "' . $row['wrongAnswerThree']. '"/>   
              <input type="hidden" id="questionId" name="questionId" value = "' . $row['questionId']. '" />
-          </form>
-        </div>
-        <div class="modal-footer">
+          </form> 
+            <br>
             <a id="info-modal-save" href="#" class="btn btn-primary">
                 Save
-            </a>
-            <a id="info-modal-close" href="#" class="btn">
-                Close
-            </a>
-        </div>
-        <form id="testThing">
-        <input type = "text" name = "firstName" value = "Matt" />
-        </form>
-'
+            </a>';
 ?>
