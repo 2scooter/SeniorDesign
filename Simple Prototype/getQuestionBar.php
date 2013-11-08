@@ -5,19 +5,19 @@
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
    }
    $result = mysqli_query($con,"SELECT * FROM testquestions");
-   $count = 0;
+   $count = 1;
    while($row = mysqli_fetch_array($result))
    {
-    if($count == 0)
+    if($count == 1)
     {
         echo '<a href="#" class="list-group-item active"  id = "'. $row['questionId']. '">';
-        echo 'Question '. $row[questionId];
+        echo 'Question '. $count;
         echo '</a> ';
     }
     else
     {                                  
         echo '<a href="#" class="list-group-item" " id = "'. $row['questionId']. '">';
-        echo 'Question '. $row[questionId];
+        echo 'Question '. $count;
         echo '</a> ';
     }                                        
     $count++;                
