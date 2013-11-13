@@ -1,14 +1,11 @@
 $(document).ready(function(){   
   doStuff();
-$( "#slideTypeChanger" ).change(function() {
-  alert( $(this).val() );
-});
 });
 
 
 function doStuff()
 {
-var url = "getPresentationBar.php"; // the script where you handle the form input.            
+var url = "getQuestionBar.php"; // the script where you handle the form input.            
     $.ajax({
            type: "POST",
            url: url,
@@ -84,7 +81,7 @@ var url = "getPresentationBar.php"; // the script where you handle the form inpu
           });           
           }
         }
-      xmlhttp.open("GET","getSlide.php?q="+str,true);
+      xmlhttp.open("GET","getquestion.php?q="+str,true);
       xmlhttp.send();
       }
       else

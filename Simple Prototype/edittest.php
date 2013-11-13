@@ -144,8 +144,7 @@ else
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/dropdown.js"></script>
-<script src="js/editpresentation.js"></script>
-<script src="js/presentation.js"></script>
+<script src="js/edittest.js"></script>
 <script src="js/bootstrap-formhelpers-selectbox.js"></script>
 <script src="js/fileinput.js"></script>
 <script type="text/javascript">

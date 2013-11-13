@@ -24,17 +24,44 @@ else
 
 </head>
 <body>
-<div class="modal fade" id="myModal">
+ <div class="modal fade" id="myModal" style="overflow-y:hidden">
+            <div class="modal-header" style = "text-align: center;">
+                Select a slide type <br>
+                <select id="slideTypeChanger">
+                    <option value = "Question">Question</option>
+                    <option value = "image">Image</option>
+                    <option value = "video">Video</option>
+                </select>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">        
+                    &times;
+                </button>              
+            </div>
+            <div class="modal-body">
+                <form id="newQuestionForm">     
+                        <h5>Question:</h5>
+                        <input type="text" id="question" name="question" size="50" />
+                        <h5>Correct Answer:</h5>
+                        <input type="text" id="correctAnswer" name="correctAnswer" size="50" />
+                        <h5>Wrong Answer One:</h5>
+                        <input type="text" id="wrongAnswerOne" name="wrongAnswerOne" size="50" />
+                        <h5>Wrong Answer Two:</h5>
+                        <input type="text" id="wrongAnswerTwo" name="wrongAnswerTwo" size="50" />
+                        <h5>Wrong Answer Three:</h5>
+                        <input type="text" id="wrongAnswerThree" name="wrongAnswerThree" size="50" />   
+                        <input type="hidden" id="questionId" name="questionId" />
+                </form> 
+            </div>
+            <div class="modal-footer">
+                <a id="submitButton" href="#" class="btn btn-primary">
+                    Submit
+                </a>
+                <a id="info-modal-close" href="#" class="btn">
+                    Close
+                </a>
+                </form>
+            </div>
+        </div>
 </div>
-
-<!--<img id="logo" src="images/logo.png"/>-->
-<!--<div id="heads">-->
-<!--<div id="headerText">-->
-<!--Regional Science and Engineering Challenge-->
-<!--</div>-->
-<!--<div id="whiteline" style="height:2px; background-color: white; width:700px; margin-left:auto; margin-right:auto; top: 40px;"></div>-->
-<!--</div>-->
-<!--<div id="tabspace"></div>-->
 
 <div id="Main">               
                 
@@ -102,33 +129,7 @@ else
                     </center>
 
                     <center id="innerlist">
-                        <div class="list-group" id="questionButton">
-                        <?php
-                             $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");                            
-                             if (mysqli_connect_errno($con))
-                             {
-                              echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                             }
-                             $result = mysqli_query($con,"SELECT * FROM testquestions");
-                             $count = 0;
-                             while($row = mysqli_fetch_array($result))
-                             {
-                              if($count == 0)
-                              {
-                                  echo '<a href="#" class="list-group-item active" id = "'. $row['questionId']. '">';
-                                  echo 'Question '. $row[questionId];
-                                  echo '</a> ';
-                              }
-                              else
-                              {                                  
-                                  echo '<a href="#" class="list-group-item" id = "'. $row['questionId']. '">';
-                                  echo 'Question '. $row[questionId];
-                                  echo '</a> ';
-                              }
-                                                 
-                              $count++;
-                             }
-                          ?>
+                        <div class="list-group" id="questionButton">      
                         
                         </div>
                     </center>
@@ -136,8 +137,7 @@ else
             </center>
             <div id="currentslide" style="font-size: .8em; display: table">
                 <div id ="question"style="display:table-cell; vertical-align:middle; text-align:center">
-                    <div id ="questionCenter">
-
+                    <div id ="questionCenter" style = "position: relative; width : 650px; height: 366px; left:50%; top:50%; margin-left: -325px;">
                     </div>
                 </div>
             </div>
