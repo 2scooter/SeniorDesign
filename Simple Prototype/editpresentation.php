@@ -100,9 +100,9 @@ else
                             <div style="width:950px; height:2px; background-color:white; margin-top:3px; left:50%; margin-left:-475px; position:absolute;"></div>
                             <ul style="margin-left:-425px;">
                                 <li id="tabHeader_7" tab = "1"><a style="text-decoration: none;" href="judges.php">View Judges</a></li>
-                                <li id="tabHeader_8" tab = "1"><a style="color:tomato; text-decoration: none;" href="users.php">Edit Users</a></li>
-                                <li id="tabHeader_9" tab = "1"><a style="text-decoration: none;">Edit Presentation</a></li>
-                                <li id="tabHeader_10" tab = "1"><a style="text-decoration: none;">Edit Test</a></li>
+                                <li id="tabHeader_8" tab = "1"><a style="text-decoration: none;" href="users.php">Edit Users</a></li>
+                                <li id="tabHeader_9" tab = "1"><a style="text-decoration: none;" href="editpresentation.php">Edit Presentation</a></li>
+                                <li id="tabHeader_10" tab = "1"><a style="text-decoration: none;" href="edittest.php">Edit Test</a></li>
                             </ul>
                         </dd>
                     </dl>
