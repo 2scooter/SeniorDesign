@@ -189,7 +189,6 @@ var url = "getPresentationBar.php"; // the script where you handle the form inpu
             $("#myModal").modal('hide');
         });
         $("#submitButton").click(function(){
-          alert("click");
           if(currentSlide == "image")
           {
                var url = "submitImageSlide.php"; // the script where you handle the form input.            
