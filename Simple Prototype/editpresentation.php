@@ -6,6 +6,14 @@ if(isset($_SESSION['identifier']))
 }
 else
     header('Location: login.php');
+if($_SESSION['accesslevel'] == "Admin")
+{
+
+}
+else
+{
+    header('Location: presentation.php');
+}
 ?>
 
 
@@ -14,30 +22,33 @@ else
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="css/edittest.css" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/common.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/dropdown.css" type="text/css" />
     <link rel="stylesheet" href="css/modal.css" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap-formhelpers.css" type="text/css" />
-    <link rel="stylesheet" href="css/edittest.css" type="text/css" />
+
 
 </head>
 <body>
  <div class="modal fade" id="myModal" style="overflow-y:hidden">
-            <div class="modal-header" style = "text-align: center;">
-                Select a slide type <br>
-                <select id="slideTypeChanger">
-                    <option value = "Question">Question</option>
-                    <option value = "image">Image</option>
-                    <option value = "video">Video</option>
-                </select>
+            <div class="modal-header">
+                <div style = "position: absolute; top: 30px; z-index: 10">
+                    Select a slide type <br>
+                    <select id="slideTypeChanger">
+                        <option value = "Question">Question</option>
+                        <option value = "image">Image</option>
+                        <option value = "video">Video</option>
+                    </select>
+                </div>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">        
                     &times;
                 </button>              
             </div>
-            <div class="modal-body">
-                <form id="newQuestionForm">     
+            <div class="modal-body" id="questionForm" >
+                <form id="newQuestionForm" style="position: absolute; top: 60px">     
                         <h5>Question:</h5>
                         <input type="text" id="question" name="question" size="50" />
                         <h5>Correct Answer:</h5>
@@ -51,7 +62,22 @@ else
                         <input type="hidden" id="questionId" name="questionId" />
                 </form> 
             </div>
-            <div class="modal-footer">
+            <div class="modal-body" id="imageSelect" style="position: absolute; top: 60px; width: 100%; height: 100%; display: table">
+            <div style="display: table-cell; text-align: center">
+                <form method="post" enctype="multipart/form-data"  id="uploadFileForm">  
+                  <input type="file" name="images" id="imagesInput" />                    
+                </form>  
+                <div id="loadedImage">
+                </div>
+            </div>
+            </div>
+            <div class="modal-body" id="videoSelect"  style="position: absolute; top: 60px;">
+            Video URL:
+            <form id="videoForm">
+            <input type = "text" name="videoURL" id="videoURL" />
+            </form>
+            </div>
+            <div class="modal-footer" style="position: absolute; right: 0px; bottom:0px">
                 <a id="submitButton" href="#" class="btn btn-primary">
                     Submit
                 </a>
@@ -63,7 +89,7 @@ else
         </div>
 </div>
 
-<div id="Main">               
+<div id="Main" style="border: none">               
                 
     <img id="logo" src="images/logo.png"/>
     <div id="heads">
@@ -87,7 +113,7 @@ else
                     <tab><a style="text-decoration: none;" href="test.php">Test</a></tab>
                 </li>
                 <li tab = "0">
-                    <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><a style="text-decoration: none;">Administration</a></dt>
+                    <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1);" onmouseout="ddMenu('one',-1)"><a style="text-decoration: none;">Administration</a></dt>
                 </li>
                 <li>
                     <tab><a style="text-decoration: none;" href="contact.php">Contact Us</a></tab>
@@ -111,7 +137,7 @@ else
         </div>
     </div>
 
-    <div id="content" style="border-bottom-right-radius: 0px;">
+    <div id="content" style="border-bottom-right-radius: 0px; border:none;">
         <div id="content_inner">
             <center>
                 <div id="slidelist">
@@ -122,12 +148,14 @@ else
                         background-color: gray;
                         color: white;
                         position: absolute;
-                        z-index: 200;
-                        width: 179px;"
+                        z-index: 100;
+                        width: 200px;" id="moduleSelect"
                             >
-                        Question List
+                        Select Module
                     </center>
+                    <div id="moduleList" style="position: absolute; margin-top: 20px;z-index: 1000; width:inherit;color:white;background-color:rgb(150,150,150);border:1px;border-style:solid;border-color:grey">
 
+                    </div>
                     <center id="innerlist">
                         <div class="list-group" id="questionButton">      
                         
@@ -135,87 +163,11 @@ else
                     </center>
                 </div>
             </center>
-            <div id="currentslide" style="font-size: .8em; display: table">
+            <div id="currentslide" style="font-size: .8em; display: table;">
                 <div id ="question"style="display:table-cell; vertical-align:middle; text-align:center">
-                    <div id ="questionCenter" style = "position: relative; width : 650px; height: 366px; left:50%; top:50%; margin-left: -325px;">
+                    <div id ="questionCenter">
                     </div>
                 </div>
-            </div>
-            <div id="controls">
-
-
-                <!--Question input Start-->
-                <div id="question_input">
-                    <!--<form method="POST" enctype="multipart/form-data" action="fup.cgi">-->
-                        <!--File to upload: <input type="file" name="upfile"><br>-->
-                        <!--Notes about the file: <input type="text" name="note"><br>-->
-                        <!--<br>-->
-                        <!--<input type="submit" value="Press"> to upload the file!-->
-                    <!--</form>-->
-                    <form action="upload_file.php" method="post"
-                          enctype="multipart/form-data">
-                        <label for="file">Filename:</label>
-                        <input type="file" name="file" id="file"><br>
-                        <input type="submit" name="submit" value="Submit">
-                    </form>
-                </div>
-                <!--select place start-->
-                <div id="select_place" style="margin-top:-95px;">
-                    <p style="margin-top: 0px;">Select Place</p>
-                    <center>
-                        <div class="bfh-selectbox">
-                            <input type="hidden" name="selectbox1" value="">
-                            <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
-                                <span class="bfh-selectbox-option input-medium" data-option="">#</span>
-                                <b class="caret"></b>
-                            </a>
-                            <div class="bfh-selectbox-options">
-                                <div role="listbox">
-                                    <ul role="option">
-                                        <li><a tabindex="-1" href="#" data-option="1">1</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="2">2</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="3">3</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="4">4</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="5">5</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="6">6</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="7">7</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="8">8</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="9">9</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="10">10</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="11">11</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="12">12</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="13">13</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="14">14</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="15">15</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <p>Select Type</p>
-                        <div class="bfh-selectbox">
-                            <input type="hidden" name="selectbox1" value="">
-                            <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
-                                <span class="bfh-selectbox-option input-medium" data-option="">Type</span>
-                                <b class="caret"></b>
-                            </a>
-                            <div class="bfh-selectbox-options">
-                                <div role="listbox">
-                                    <ul role="option">
-                                        <li><a tabindex="-1" href="#" data-option="1">Image</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="2">Video</a></li>
-                                        <li><a tabindex="-1" href="#" data-option="3">Question</a></li>
-                                </div>
-                            </div>
-                        </div>
-
-                </center>
-                </div>
-
-                <div id="applybox"style="margin-top:-95px;">
-                    <center>
-                        <button type="button" class="btn btn-default" style="margin-top:50px;">Apply</button>
-                    </center>
-                </div>   
             </div>
         </div>
     </div>
@@ -227,6 +179,7 @@ else
 <script src="js/editpresentation.js"></script>
 <script src="js/presentation.js"></script>
 <script src="js/bootstrap-formhelpers-selectbox.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="js/fileinput.js"></script>
 <script type="text/javascript">
     var _gaq = _gaq || [];

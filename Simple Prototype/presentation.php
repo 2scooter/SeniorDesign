@@ -39,9 +39,14 @@ else
                     <li id="tabHeader_3" tab = "1">
                         <tab><a style="text-decoration: none;" href="test.php">Test</a></tab>
                     </li>
+                    <?php
+                    if($_SESSION['accesslevel'] == "Admin")
+                        echo '
                     <li tab = "0">
-                        <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><a style="text-decoration: none;">Administration</a></dt>
-                    </li>
+                        <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu(\'one\',1); setLeft()" onmouseout="ddMenu(\'one\',-1)"><a style="text-decoration: none;">Administration</a></dt>
+                    </li>';
+                    
+                    ?>
                     <li>
                         <tab><a style="text-decoration: none;" href="contact.php">Contact Us</a></tab>
                     </li>
@@ -69,7 +74,7 @@ else
                   <div id="slidelist" style="
                     width: 200px;
                     position: absolute;
-                    height: 456px;
+                    height: 454px;
                     margin-left: -25px;
                     margin-top: -25px;
                     background-color: white;
@@ -85,7 +90,7 @@ else
                                         z-index: 1;
                                         width: 100%;
                 ">
-                                        Question List
+                                        Home
                                     </center>
 
                                     <center id="innerlist" style="
@@ -108,7 +113,7 @@ else
                                              {
                                               echo "Failed to connect to MySQL: " . mysqli_connect_error();
                                              }
-                                             $result = mysqli_query($con,"SELECT * FROM presentation");
+                                             $result = mysqli_query($con,'SELECT * FROM presentation ORDER BY position ASC');
                                              $count = 0;
                                              while($row = mysqli_fetch_array($result))
                                              {
@@ -121,10 +126,10 @@ else
                                              
                                               if($row['slidetype'] == "image")
                                               {                        
-                                               $currentQuery = mysqli_query($con,"SELECT * FROM presentationImages WHERE imageId = " . $row['imageId']);                                
+                                               $currentQuery = mysqli_query($con,'SELECT * FROM presentationImages WHERE imageId = ' . $row['imageId'] );                                
                                                while($currentRow = mysqli_fetch_array($currentQuery))
                                                 {
-                                                echo '<img id="slide" src=' . $currentRow['imageURL'] . '>'; 
+                                                echo '<img id="slide" style="max-height: 371px" src=' . $currentRow['imageURL'] . '>'; 
                                                 }
                                               }
                                               else if($row['slidetype'] == "question")
@@ -133,7 +138,6 @@ else
                                                     while($currentRow = mysqli_fetch_array($currentQuery))
                                                     {
                                                     echo'                                
-                                                <h1>Question ' . $currentRow['questionId']. '</h1>
                                                 <p>
                                                     <font size="6"> '. $currentRow['question'] . '</font>
                                                 </p>
@@ -145,14 +149,21 @@ else
                                                     ' . $currentRow['wrongAnswerOne'] . '<br><br>
                                                     <input type="radio" name="group1" value="C">
                                                     ' . $currentRow['wrongAnswerTwo'] . '<br><br>';
-                                                      if($ROW['wrongAnswerThree'] != '')
-                                                    echo'
-                                                    <input type="radio" name="group1" value="C">
-                                                    ' . $currentRow['wrongAnswerThree'] . '<br>';
-                                                     echo'
-                                                     </div>';
+                                                    if($currentRow['wrongAnswerThree'] != '')
+                                                    {
+                                                    echo'<input type="radio" name="group1" value="D">' . $currentRow['wrongAnswerThree'] . '<br>';
                                                     }
-                                              }                             
+                                                echo'</div>';
+                                              }
+                                              }       
+                                              else if($row['slidetype'] == "video")
+                                              {
+                                               $currentQuery = mysqli_query($con,"SELECT * FROM presentationVideos WHERE videoId = " . $row['videoId']);                                
+                                                $currentRow = mysqli_fetch_array($currentQuery);
+                                               echo'
+                                              <iframe width="560" height="315" src="' .$currentRow['videoURL'] . ' " frameborder="0" allowfullscreen></iframe>';
+                                                  
+                                              }
                                               echo '</div>';
                                               $count++;
                                     

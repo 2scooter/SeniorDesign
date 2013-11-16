@@ -40,9 +40,14 @@ else
                     <li id="tabHeader_3" tab = "1">
                         <tab><a style="color:tomato; text-decoration: none;" href="test.php">Test</a></tab>
                     </li>
+                    <?php
+                    if($_SESSION['accesslevel'] == "Admin")
+                        echo '
                     <li tab = "0">
-                        <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><a style="text-decoration: none;">Administration</a></dt>
-                    </li>
+                        <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu(\'one\',1); setLeft()" onmouseout="ddMenu(\'one\',-1)"><a style="text-decoration: none;">Administration</a></dt>
+                    </li>';
+                    
+                    ?>
                     <li>
                         <tab><a style="text-decoration: none;" href="contact.php">Contact Us</a></tab>
                     </li>
@@ -67,23 +72,23 @@ else
                 <div id="content_inner">
                     <div id="myCarousel" class="carousel slide" height="inherit" data-interval="false">
                         <div class="carousel-inner" height="inherit">
-                        <?php                        
+                      <?php                        
                          $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
                           // Check connection
                           if (mysqli_connect_errno($con))
                           {
                           echo "Failed to connect to MySQL: " . mysqli_connect_error();
                           }     
-                          $count = 0;
+                          $count = 1;
                           $result = mysqli_query($con,"SELECT * FROM testquestions"); 
                           while($ROW = mysqli_fetch_array($result))
                           {                           
-                            if($count == 0)
+                            if($count == 1)
                                 echo'<div class="item active" height="inherit">';
                             else
                                 echo'<div class ="item">';
                             echo'   
-                                <h1>Question ' . $ROW['questionId']. '</h1>
+                                <h1>Question ' . $count. '</h1>
                                 <p>
                                     <font size="6"> '. $ROW['question'] . '</font>
                                 </p>
@@ -105,19 +110,19 @@ else
                             ';
                             $count++;
                           }                          
-                        ?>                            
+                        ?>              
                         </div>
                     </div>
                 </div>
             </div>
-            <a href="#myCarousel" data-slide="prev" style="margin-top: -100px; margin-left: 280px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Previous</a>
-            <a href="#myCarousel" data-slide="next" style="margin-top: -100px; margin-left: 374px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Next</a>
+            <a href="#myCarousel" id="previousButton" data-slide="prev" style="margin-top: -100px; margin-left: 280px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Previous</a>
+            <a href="#myCarousel" id="nextButton" data-slide="next" style="margin-top: -100px; margin-left: 374px; left:50%; position:absolute;" class="btn btn-large btn-primary" href="#">Next</a>
         </div>
 
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/presentation.js"></script>
+        <script src="js/test.js"></script>
         <script type="text/javascript" src="js/dropdown.js"></script>
         <script type="text/javascript">
 

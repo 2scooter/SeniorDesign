@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
     <head>
@@ -32,9 +33,14 @@
                         <li id="tabHeader_3" tab = "1">
                             <tab><a style="text-decoration: none;" href="test.php">Test</a></tab>
                         </li>
-                        <li tab = "0">
-                            <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu('one',1); setLeft()" onmouseout="ddMenu('one',-1)"><a style="text-decoration: none;">Administration</a></dt>
-                        </li>
+                    <?php
+                    if($_SESSION['accesslevel'] == "Admin")
+                        echo '
+                    <li tab = "0">
+                        <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu(\'one\',1); setLeft()" onmouseout="ddMenu(\'one\',-1)"><a style="text-decoration: none;">Administration</a></dt>
+                    </li>';
+                    
+                    ?>
                         <li>
                             <tab><a style="color:tomato; text-decoration: none;" href="contact.php">Contact Us</a></tab>
                         </li>

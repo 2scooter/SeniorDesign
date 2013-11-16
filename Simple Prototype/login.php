@@ -31,7 +31,7 @@
                 Please use your google account to sign in.<br><br>
                 </font>
                 <center>
-                   <a href="#" class="janrainEngage"><button class="skip">Sign in.</button></a>
+                   <a href="#" class="janrainEngage"><button class="skip">Sign in</button></a>
                 </center>
                 </div>
             </div>
@@ -61,7 +61,7 @@
     if (typeof window.janrain !== 'object') window.janrain = {};
     if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
     
-    janrain.settings.tokenUrl = 'http://www.judgestraining.org/index.php';
+    janrain.settings.tokenUrl = 'http://www.judgestraining.org/presentation.php';
 
     function isReady() { janrain.ready = true; };
     if (document.addEventListener) {

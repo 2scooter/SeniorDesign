@@ -19,7 +19,7 @@ $row = mysqli_fetch_array($result);
    $currentQuery = mysqli_query($con,"SELECT * FROM presentationImages WHERE imageId = " . $row['imageId']);                                
    while($currentRow = mysqli_fetch_array($currentQuery))
     {
-    echo '<img id="slide" style="max-width:100%;max-height:100%" src=' . $currentRow['imageURL'] . '>'; 
+    echo '<img id="slide" style="max-width:675px; max-height: 500px" src=' . $currentRow['imageURL'] . '>'; 
     }
   }
   else if($row['slidetype'] == "question")
@@ -28,7 +28,6 @@ $row = mysqli_fetch_array($result);
         while($currentRow = mysqli_fetch_array($currentQuery))
         {
         echo'                                
-    <h1>Question ' . $currentRow['questionId']. '</h1> 
     <form id = "newPresentationQuestion">
     Question <br>
     <input type = "text" name = "question" size = "50" value = "' . $currentRow['question'] . '"><br>
@@ -40,14 +39,24 @@ $row = mysqli_fetch_array($result);
     <input type = "text" name = "wrongAnswerTwo" size = "50" value = "' . $currentRow['wrongAnswerTwo'] . '"><br>
     Wrong Answer Three<br>
     <input type = "text" name = "wrongAnswerThree" size = "50" value = "' . $currentRow['wrongAnswerThree'] . '">
+    <input type="hidden" id="questionId" name="questionId" value = "' . $currentRow['questionId']. '" />
     </form>
     <br>
-    <a id="info-modal-save" href="#" class="btn btn-primary">
+    <a id="questionSave" href="#" class="btn btn-primary">
       Save
     </a>';
         } 
    }                    
-
+   else if($row['slidetype'] == "video")
+  {
+   $currentQuery = mysqli_query($con,'SELECT * FROM presentationVideos WHERE videoId = '  . $row['videoId']);                                
+    $currentRow = mysqli_fetch_array($currentQuery);
+   echo'
+  <iframe width="560" height="315" src="' .$currentRow['videoURL'] . ' " frameborder="0" allowfullscreen></iframe>';
+      
+  }
+                                    
+   
 
 
 mysqli_close($con);

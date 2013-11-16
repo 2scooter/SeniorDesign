@@ -1,4 +1,20 @@
 <?php session_start();
+include('loginscript.php');
+
+if(isset($_SESSION['identifier']))
+{
+    
+}
+else
+    header('Location: login.php');
+if($_SESSION['accesslevel'] == "Admin")
+{
+
+}
+else
+{
+    header('Location: presentation.php');
+}
 
 $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
   // Check connection
@@ -6,7 +22,7 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  $result = mysqli_query($con,"SELECT * FROM users");
+  $result = mysqli_query($con,"SELECT * FROM users WHERE accesslevel = 'Judge' and current = '1'");
 
  mysqli_close($con);
 
@@ -61,8 +77,8 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
                                     <ul style="margin-left:-425px;">
                                         <li id="tabHeader_7" tab = "1"><a style="color:tomato; text-decoration: none;" href="judges.php">View Judges</a></li>
                                         <li id="tabHeader_8" tab = "1"><a style="text-decoration: none;" href="users.php">Edit Users</a></li>
-                                        <li id="tabHeader_9" tab = "1"><a style="text-decoration: none;">Edit Presentation</a></li>
-                                        <li id="tabHeader_10" tab = "1"><a style="text-decoration: none;">Edit Test</a></li>
+                                        <li id="tabHeader_9" tab = "1"><a style="text-decoration: none;" href="editpresentation.php">Edit Presentation</a></li>
+                                        <li id="tabHeader_10" tab = "1"><a style="text-decoration: none;" href="edittest.php">Edit Test</a></li>
                                     </ul>
                                 </dd>
                             </dl>
@@ -71,14 +87,21 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
                 </div>
             </div>
         <div class="container" style="margin-top:30px;">
+            <a id="clear-button" href="#" class="btn btn-primary" style="background-color:rgb(68, 68, 68); margin-bottom:20px;">
+                    Clear List
+            </a>
+            <a id="download-button" href="#" class="btn btn-primary" style="background-color:rgb(68, 68, 68); margin-bottom:20px;">
+                    Download List
+            </a>
+
             <table class="table table-striped" id="user-content">
                 <thead>
                     <tr>
-                        <th>Email</th>
-                        <th>Access Level</th>
-                        <th>Test Progress</th>
-                        <th>Test Score</th>
-                        <th>Training Progress</th>
+                        <th>Name</th>
+                        <th>Training Progress %</th>
+                        <th>Test Progress %</th>
+                        <th>Test Score %</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -86,20 +109,19 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
                         while($row = mysqli_fetch_array($result))
                         {
                             echo "<tr>";
-                            echo "<td>";
-                            echo $row['email'];
+                            echo '<td id = "name">';
+                            echo $row['first_name'];
+                            echo " ";
+                            echo $row['last_name'];
                             echo "</td>";
                             echo "<td>";
-                            echo $row['accesslevel'];
+                            echo $row['trainingprogress'];
                             echo "</td>";
                             echo "<td>";
                             echo $row['testprogress'];
                             echo "</td>";
                             echo "<td>";
                             echo $row['testscore'];
-                            echo "</td>";
-                            echo "<td>";
-                            echo $row['trainingprogress'];
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -109,11 +131,9 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
         </div>
 
 
-
+             
             <div class="container" style="margin-top:30px;">
-                <a id="print-button" href="#" class="btn btn-primary" style="background-color:rgb(68, 68, 68); float:right; margin-bottom:20px;">
-                    Print List
-                </a>
+           
                 <table class="table table-striped" id="user-content" >
                 </table>
             </div>
@@ -167,34 +187,16 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="tableEdit.js"></script>
-        <script src="js/judges.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/paging.js"></script>
                 <script type="text/javascript" charset="utf-8">
                     $(document).ready( function () {
-                    var oTable = $('#user-content').dataTable( {
+                    $('#user-content').dataTable( {
                     "bPaginate": false
-                    } );
-                       /* Apply the jEditable handlers to the table */
-                        oTable.$('#accesslevel').editable( 'submit.php', {
-                            "callback": function( sValue, y ) {
-                                var aPos = oTable.fnGetPosition( this );
-                                oTable.fnUpdate( sValue, aPos[0], aPos[1] );
-                            },
-                            "submitdata": function ( value, settings ) {
-                                return {
-                                    "row_id": $(this).closest("tr").attr('id') ,
-                                    "column": $(this).closest("td").attr('id')
-                                };
-                            },
-                        data   : " {'E':'Admin','F':'View-Only','G':'User', 'selected':'G'}",
-                        type   : 'select',
-                            "height": "30px",
-                            "width": "100%",
-                        } );
-                    } );
-        		</script>
+                    });
+                    });
+                </script>
         <script type="text/javascript" src="js/dropdown.js"></script>
 
     </body>

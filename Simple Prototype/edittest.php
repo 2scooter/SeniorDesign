@@ -1,11 +1,22 @@
 <?php session_start();
 include('loginscript.php');
+
 if(isset($_SESSION['identifier']))
 {
     
 }
 else
     header('Location: login.php');
+if($_SESSION['accesslevel'] == "Admin")
+{
+
+}
+else
+{
+    header('Location: presentation.php');
+}
+
+
 ?>
 
 
@@ -95,7 +106,7 @@ else
                             <ul style="margin-left:-425px;">
                                 <li id="tabHeader_7" tab = "1"><a style="text-decoration: none;" href="judges.php">View Judges</a></li>
                                 <li id="tabHeader_8" tab = "1"><a style="color:tomato; text-decoration: none;" href="users.php">Edit Users</a></li>
-                                <li id="tabHeader_9" tab = "1"><a style="text-decoration: none;">Edit Presentation</a></li>
+                                <li id="tabHeader_9" tab = "1"><a style="text-decoration: none" href = "editpresentation.php">Edit Presentation</a></li>
                                 <li id="tabHeader_10" tab = "1"><a style="text-decoration: none;">Edit Test</a></li>
                             </ul>
                         </dd>

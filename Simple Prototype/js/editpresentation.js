@@ -1,34 +1,132 @@
-$(document).ready(function(){   
-  doStuff();
+var currentSlide = "question";
+var currentModule = 1;
+
+$(document).mouseup(function (e)
+{
+    var container = $("#moduleList");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        $("#moduleList").hide();
+    }
+});
+
+$(document).ready(function(){  
+ddMenu('one',-1);
+$("#moduleList").hide();
+$(document).on('click','#moduleSelect',function()
+{
+    $("#moduleList").toggle();     
+});
+    
+doStuff();
+$( "#imageSelect").hide();
+$( "#videoSelect").hide();
 $( "#slideTypeChanger" ).change(function() {
-  alert( $(this).val() );
+  if((this.value) == "image")
+  {
+   $( "#questionForm").hide();
+   $( "#imageSelect").show();
+   $( "#videoSelect").hide(); 
+   currentSlide = "image";
+  }
+  else if((this.value) == "video")
+  {
+   $( "#questionForm").hide();
+   $( "#imageSelect").hide();
+   $( "#videoSelect").show();   
+   currentSlide ="video";
+  }
+  else
+  {
+   $( "#questionForm").show();
+   $( "#imageSelect").hide();
+   $( "#videoSelect").hide();   
+   currentSlide = "question";
+  }
+
+});
+$("#imagesInput").change(function()
+{
+    var url = "upload_file.php"; // the script where you handle the form input.  
+    var formData = new FormData($("#uploadFileForm")[0]);           
+    $.ajax({
+           type: "POST",           
+           data: formData, // serializes the form's elements.
+           url: url,
+           contentType: false,
+           processData: false,
+           success: function(data)
+           {         
+              document.getElementById("loadedImage").innerHTML = data;           
+           }
+         });
+
 });
 });
 
 
 function doStuff()
 {
+    
+$.ajax({
+    type: 'POST',
+    success: function(data)
+    {
+        document.getElementById("moduleList").innerHTML = data;
+        $("#moduleList > a").click(function()
+        {
+            $("#moduleSelect").html($(this).html());
+            currentModule = this.id;
+            $("#moduleList").hide();
+            doStuff();
+        });
+    },
+    url: 'getModuleList.php',
+});    
+    
+var data = "moduleId=" + currentModule;
 var url = "getPresentationBar.php"; // the script where you handle the form input.            
     $.ajax({
            type: "POST",
            url: url,
+           data: data,
            success: function(data)
            {
              document.getElementById("questionButton").innerHTML = data;
+            $( "#questionButton").sortable(
+                {
+                axis: 'y',
+                containment: "parent",
+                stop: function (event, ui) {
+                var data = $(this).sortable('serialize');
+               // POST to server using $.post or $.ajax
+                $.ajax({
+                    data: data,
+                    type: 'POST',
+                    success: function(data)
+                    {
+                        doStuff();
+                    },
+                    url: 'updateSlideOrder.php',
+                });
+                }
+                
+                });
             $("#questionButton > a").hover(function(){
-              var currentQuestion = this.id;
+              var currentSlide = this.id.substring(5);
               if((this).id !== "")
-              {                
+              {  
               $(this).append('<div id = "deleteButton" style="position:absolute; right: 5px; top: 5px;"><image src="../images/deletered.png" width="18px" height="18px"></div>');
-              }
-              $(this).css("color","white");
-              $(this).css("background-color","#7CC0FF");
+              }   
+                  $( this ).css({  "color": "rgb(255, 255, 255)","background-color": "rgb(124, 192, 255)"});
               $("#deleteButton").click(function(){
-                  var url = "deleteQuestion.php"; // the script where you handle the form input.            
+                  var url = "deleteSlide.php"; // the script where you handle the form input.            
                   $.ajax({
                          type: "POST",
                          url: url,
-                         data: "questionId=" + currentQuestion, // serializes the form's elements.
+                         data: "slideId=" + currentSlide, // serializes the form's elements.
                          success: function(data)
                          {         
                             document.getElementById("questionCenter").innerHTML = data;
@@ -38,15 +136,15 @@ var url = "getPresentationBar.php"; // the script where you handle the form inpu
               });
 
               },function(){
+              $(this).css({"background-color" : "","color":""});
               if((this).id !== "")
               {
               $( this ).find( "#deleteButton" ).remove();
-            }            
-              $(this).removeAttr('style');
+              }            
             });
             
     $("#questionButton > a").click(function(){
-    var str = (this.id);
+    var str = (this.id.substring(5));
     $("#questionButton > a").removeClass('active');
     $(this).addClass('active');
     if(this.id != "")
@@ -64,16 +162,13 @@ var url = "getPresentationBar.php"; // the script where you handle the form inpu
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
           {
           document.getElementById("questionCenter").innerHTML=xmlhttp.responseText;
-          $("#info-modal-close").click(function(){
-           $('#myModal').modal('hide');
-          });  
-          $("#info-modal-save").click(function(){         
+          $('#questionSave').click(function(){         
            {
-              var url = "updateOldQuestion.php"; // the script where you handle the form input.            
+              var url = "updatePresentationQuestion.php"; // the script where you handle the form input.            
               $.ajax({
                      type: "POST",
                      url: url,
-                     data: $("#oldQuestionForm").serialize(), // serializes the form's elements.
+                     data: $("#newPresentationQuestion").serialize(), // serializes the form's elements.
                      success: function(data)
                      {
                          document.getElementById("saveResponse").innerHTML = data; // show response from the php script.
@@ -94,29 +189,50 @@ var url = "getPresentationBar.php"; // the script where you handle the form inpu
             $("#myModal").modal('hide');
         });
         $("#submitButton").click(function(){
-              var url = "submitNewQuestion.php"; // the script where you handle the form input.            
+          alert("click");
+          if(currentSlide == "image")
+          {
+               var url = "submitImageSlide.php"; // the script where you handle the form input.            
+               $.ajax({
+                     type: "POST",
+                     url: url,
+                     data: "image=" + $("div#loadedImage img").attr("src") +  "&moduleId=" + currentModule, // serializes the form's elements.
+                     success: function(data)
+                     {
+                     }
+                });
+          }      
+          if(currentSlide == "question")
+          {
+               var url = "submitPresentationQuestion.php"; // the script where you handle the form input.   
+               var data = $("#newQuestionForm").serialize()  +  "&moduleId=" + currentModule;
+               $.ajax({
+                     type: "POST",
+                     url: url,
+                     data: data, // serializes the form's elements.
+                     success: function(data)
+                     {
+                       document.getElementById("questionCenter").innerHTML = data; 
+                     }
+                });
+          }
+          if(currentSlide == "video")
+          {
+              var url = "submitNewVideo.php"
               $.ajax({
                      type: "POST",
                      url: url,
-                     data: $("#newQuestionForm").serialize(), // serializes the form's elements.
+                     data: $("#videoForm").serialize() + "&moduleId=" + currentModule, // serializes the form's elements.
                      success: function(data)
                      {
-                       document.getElementById("questionCenter").innerHTML = data;                
+                       document.getElementById("questionCenter").innerHTML = data;   
                      }
-                   });
-          var url = "getQuestionBar.php"; // the script where you handle the form input.            
-           $.ajax({
-           type: "POST",
-           url: url,
-           success: function(data)
-           {
-             document.getElementById("questionButton").innerHTML = data;
-             doStuff();
-           }
-           });    
-
+             });
+          }
+          doStuff();
           $("#newQuestionForm").find("input").val(""); 
-          $("#myModal").modal('hide');          
+          $("#myModal").modal('hide');     
+          $("#submitButton").off("click");
           return false; // avoid to execute the actual submit of the form.
         });
       }

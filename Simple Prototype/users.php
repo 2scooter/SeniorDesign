@@ -1,7 +1,20 @@
 <?php session_start();
+include('loginscript.php');
 
+if(isset($_SESSION['identifier']))
+{
+    
+}
+else
+    header('Location: login.php');
+if($_SESSION['accesslevel'] == "Admin")
+{
 
-
+}
+else
+{
+    header('Location: presentation.php');
+}
 
 $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
   // Check connection
@@ -12,11 +25,11 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
   if(!empty($_POST['accountid']))
   {
       mysqli_query($con, '
-      UPDATE users 
+      UPDATE users
       SET email = "' . $_POST["email"] . '",
       accesslevel = "' . $_POST["accesslevel"] . '",
       address = "' . $_POST["address"] . '",
-      phone = "' . $_POST["phone"] . '"     
+      phone = "' . $_POST["phone"] . '"
       WHERE accountid = "' . $_POST["accountid"] .'"');
   } 
   $result = mysqli_query($con,"SELECT * FROM users"); 
@@ -78,7 +91,7 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
                                     <div style="width:950px; height:2px; background-color:white; margin-top:3px; left:50%; margin-left:-475px; position:absolute;"></div>
                                     <ul style="margin-left:-425px;">
                                         <li id="tabHeader_7" tab = "1"><a style="text-decoration: none;" href="judges.php">View Judges</a></li>
-                                        <li id="tabHeader_8" tab = "1"><a style="text-decoration: none;" href="users.php">Edit Users</a></li>
+                                        <li id="tabHeader_8" tab = "1"><a style="color:tomato; style="text-decoration: none;" href="users.php">Edit Users</a></li>
                                         <li id="tabHeader_9" tab = "1"><a style="text-decoration: none;" href="editpresentation.php">Edit Presentation</a></li>
                                         <li id="tabHeader_10" tab = "1"><a style="text-decoration: none;" href="edittest.php">Edit Test</a></li>
                                     </ul>
@@ -90,15 +103,12 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
             </div>
 
             <div class="container" style="margin-top:30px;">
-                <table class="table table-striped" id="user-content">
+                <table class="table table-striped" id="user-content" >
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Access Level</th>
-                            <th>Training Progress</th>
-                            <th>Test Progress</th>
-                            <th>Test Score</th>
                             <th>Information</th>
                         </tr>
                     </thead>
@@ -118,18 +128,11 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
                             echo '<td id = "accesslevel">';
                             echo $row['accesslevel'];
                             echo "</td>";
-                            echo "</td>";
-                            echo '<td id = "trainingprogress">';
-                            echo $row['trainingprogress'];
-                            echo "</td>";
-                            echo '<td id = "testprogress">';
-                            echo $row['testprogress'];
-                            echo "</td>";
-                            echo '<td id = "testscore">';
-                            echo $row['testscore'];
                             echo '<td id = "info">';
                             echo '<a id="infoButton" href="#" class="btn">Info</a>';
                             echo "</td>";
+                            echo '<input type ="hidden" id = "phoneCell" value = "'.$row['phone'] . '">';
+                            echo '<input type ="hidden" id = "addressCell" value = "'.$row['address'] . '">';
                             echo "</tr>";
                         }
                     ?>
@@ -145,7 +148,6 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
                 </button>
                 <h3></h3>
                 <h4></h4>
-                <h6></h6>
                 <form action="users.php" method="post" id="adminform">
                 <div class="bfh-selectbox" style="margin-left:5%;">
                     <input type="hidden" id="access" name="accesslevel" value="Admin">

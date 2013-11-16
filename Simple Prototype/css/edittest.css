@@ -7,12 +7,9 @@
     background-color: white;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
-    border: 2px;
-    border-style: solid;
-    border-color: white;
+    border: none;
     overflow:auto;
 }
-
 #innerlist{
     border-width: 2px;
     border-style: solid;
@@ -23,13 +20,11 @@
 
 #currentslide{
     width: 701px;
-    height: 411px;
+    height: 560px;
     margin-top: -559px;
     margin-left: 172px;
     border-top-right-radius: 25px;
-    border: 2px;
-    border-style: solid;
-    border-color: black;
+    border: none;
 }
 #currentslide-test{
     width: 701px;
@@ -44,10 +39,8 @@
     width: 701px;
     height: 150px;
     margin-top: -2px;
-    margin-left: 172px;
-    border: 2px;
-    border-style: solid;
-    border-color: black;
+    margin-left: 174px;
+    border: none;
     }
 
 #question_input{
@@ -56,9 +49,7 @@
 }
 
 #select_place{
-    border: 2px;
-    border-style: solid;
-    border-color: black;
+    border: none;
     position: absolute;
 
     margin-top: -104px;
@@ -68,9 +59,7 @@
 }
 
 #applybox{
-    border: 2px;
-    border-style: solid;
-    border-color: black;
+    border: none;
     position: absolute;
 
     margin-top: -104px;
