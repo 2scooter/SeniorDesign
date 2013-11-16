@@ -11,6 +11,7 @@ var url = "getQuestionBar.php"; // the script where you handle the form input.
            url: url,
            success: function(data)
            {
+                
              document.getElementById("questionButton").innerHTML = data;
             $("#questionButton > a").hover(function(){
               var currentQuestion = this.id;

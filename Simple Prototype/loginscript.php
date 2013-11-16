@@ -79,7 +79,7 @@ if(strlen($token) == 40) {//test the length of the token; it should be 40 charac
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  mysqli_query($con,"INSERT IGNORE INTO users (accountid, email, accesslevel,testprogress,testscore,trainingprogress) VALUES ($identifier,'$email',0,0,0,0)");
+  mysqli_query($con,"INSERT IGNORE INTO users (accountid, email, accesslevel,testprogress,testscore,trainingprogress) VALUES ($identifier,'$email','Judge',0,0,0)");
   $result = mysqli_query($con,"SELECT * FROM users WHERE email = '$email' ");
   $row = mysqli_fetch_array($result);
   
