@@ -1,0 +1,70 @@
+
+#slidelist{
+    width: 200px;
+    height: 561px;
+    margin-top: -26px;
+    margin-left: -700px;
+    background-color: white;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border: none;
+    overflow:auto;
+}
+#innerlist{
+    border-width: 2px;
+    border-style: solid;
+    border-bottom-left-radius: 25px;
+    color: white;
+    margin-top: 25px;
+}
+
+#currentslide{
+    width: 701px;
+    height: 560px;
+    margin-top: -559px;
+    margin-left: 172px;
+    border-top-right-radius: 25px;
+    border: none;
+}
+#currentslide-test{
+    width: 701px;
+    height: 560px;
+    margin-top: -559px;
+    margin-left: 172px;
+    border:none;
+}
+
+#controls{
+    background-color: lightblue;
+    width: 701px;
+    height: 150px;
+    margin-top: -2px;
+    margin-left: 174px;
+    border: none;
+    }
+
+#question_input{
+    margin-left:85px;
+    margin-right:75px;
+}
+
+#select_place{
+    border: none;
+    position: absolute;
+
+    margin-top: -104px;
+    margin-left: -1px;
+    width: 85px;
+    height: 150px;
+}
+
+#applybox{
+    border: none;
+    position: absolute;
+
+    margin-top: -104px;
+    margin-left: 624px;
+    width: 75px;
+    height: 150px;
+
+}
