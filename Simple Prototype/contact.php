@@ -1,4 +1,17 @@
-<?php session_start(); ?>
+<?php session_start(); 
+if(isset($_SESSION['identifier']))
+{  
+    if(isset($_SESSION['identifier']))
+    {
+           
+    }
+    else
+        header('Location: presentation.php');
+        
+    }
+else
+    header('Location: login.php');
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
     <head>
@@ -22,27 +35,34 @@
             <div id="tabspace"></div>
 
             <div id="tabContainer">
-                <div id="tabs">
+               <div id="tabs">
                     <ul id="tabslist">
                         <li id="tabHeader_1" tab = "1">
-                            <tab><a style="text-decoration: none;" href="index.php">Home</a></tab>
-                        </li>
-                        <li id="tabHeader_2" tab = "1">
                             <tab><a style="text-decoration: none;" href="presentation.php">Presentation</a></tab>
                         </li>
+                        <?php
+                            if(($_SESSION['accesslevel'] != "Judge")||($_SESSION['finishPresentation'] == "1"))
+                                echo '
+                               <li id="tabHeader_2" tab = "1">
+                                    <tab><a style="text-decoration: none;" href="test.php">Test</a></tab>
+                            </li>';
+                        ?>
+                        <?php
+                        if(($_SESSION['accesslevel'] == "Admin")||($_SESSION['accesslevel'] == "View-Only"))
+                            echo '
+                        <li tab = "0" onmouseover="ddMenu(\'one\',1);" onmouseout="ddMenu(\'one\',-1)">
+                            <dt id="one-ddheader" onclick="displayPage(2)"><a style="text-decoration: none;">Administration</a></dt>
+                        </li>';
+                        
+                        ?>
                         <li id="tabHeader_3" tab = "1">
-                            <tab><a style="text-decoration: none;" href="test.php">Test</a></tab>
+                            <tab><a style="text-decoration: none;" href="account.php">Account</a></tab>
                         </li>
-                    <?php
-                    if($_SESSION['accesslevel'] == "Admin")
-                        echo '
-                    <li tab = "0">
-                        <dt id="one-ddheader" onclick="displayPage(2)" onmouseover="ddMenu(\'one\',1); setLeft()" onmouseout="ddMenu(\'one\',-1)"><a style="text-decoration: none;">Administration</a></dt>
-                    </li>';
-                    
-                    ?>
-                        <li>
+                        <li id="tabHeader_4" tab = "1">
                             <tab><a style="color:tomato; text-decoration: none;" href="contact.php">Contact Us</a></tab>
+                        </li>
+                        <li id="tabHeader_5" tab = "1">
+                            <tab><a style="text-decoration: none;" href="logout.php">Logout</a></tab>
                         </li>
                     </ul>
                     <div id="dropdown">
@@ -50,11 +70,14 @@
                             <dl class="dropdown">
                                 <dd id="one-ddcontent" onmouseover="cancelHide('one')" onmouseout="ddMenu('one',-1)">
                                     <div style="width:950px; height:2px; background-color:white; margin-top:3px; left:50%; margin-left:-475px; position:absolute;"></div>
-                                    <ul style="margin-left:-425px;">
+                                    <ul>
                                         <li id="tabHeader_7" tab = "1"><a style="text-decoration: none;" href="judges.php">View Judges</a></li>
                                         <li id="tabHeader_8" tab = "1"><a style="text-decoration: none;" href="users.php">Edit Users</a></li>
-                                        <li id="tabHeader_9" tab = "1"><a style="text-decoration: none;" href="editpresentation.php">Edit Presentation</a></li>
-                                        <li id="tabHeader_10" tab = "1"><a style="text-decoration: none;" href="edittest.php">Edit Test</a></li>
+                                     <?php if($_SESSION['accesslevel'] == "Admin")
+                                    echo'
+                                    <li id="tabHeader_9" tab = "1"><a style="text-decoration: none;" href="editpresentation.php">Edit Presentation</a></li>
+                                    <li id="tabHeader_10" tab = "1"><a style="text-decoration: none;" href="edittest.php">Edit Test</a></li>
+                                    '?>
                                     </ul>
                                 </dd>
                             </dl>
@@ -65,7 +88,7 @@
                     <div id="tabscontent">
                         <br>
                         <br>
-                        <h4 style="color:black; margin-left:2em;">The Resource Center is in Science 0212A</h4>
+                        <h4 style="color:black; margin-left:2em;">SIUe Science Building East Room 0212A</h4>
                         <br>
                         <h4 style="color:black; margin-left:2em;">Phone: &emsp;618-650-3065</h4>
                         <br>
@@ -73,6 +96,9 @@
                         <br>
                         <h4 style="color:black; margin-left:2em;">Mailing Address: <br>&emsp;&emsp;STEM Center,
                         <br>&emsp;&emsp;Science Building 0212A, <br>&emsp;&emsp;Edwardsville, IL 62026-2224</h4>
+                        <br>
+                        <b style="margin-left:2em; color:black;">Website:</b><a style="color:darkblue; margin-left:2em;"
+                            href="http://www.siue.edu/stem/">http://www.siue.edu/stem/</a>
                         <br>
                     </div>
                 </div>

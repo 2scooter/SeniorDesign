@@ -6,7 +6,7 @@ function ddMenu(id,d){
   var h = document.getElementById(id + '-ddheader');
   var c = document.getElementById(id + '-ddcontent');
   var container = document.getElementById(id + '-ddcontainer');
-  container.setAttribute('style', 'margin-left: -' + '180' + 'px; width:0; height:0; position:absolute; margin-top:52px;');
+  container.setAttribute('style', 'margin-left: -' + '80' + 'px; width:0; height:0; position:absolute; margin-top:52px;');
   clearInterval(c.timer);
   if(d == 1){
     clearTimeout(h.timer);
@@ -42,10 +42,10 @@ function cancelHide(id){
 // incrementally expand/contract the dropdown and change the opacity //
 function ddSlide(c,d){
   windowWidth = $(window).width();
-  marginWidth = 450;
+  marginWidth = 0;
   var currh = c.offsetHeight;
   var dist;
-  c.style.width = 950 + 'px';
+  c.style.width = 800 + 'px';
   c.style.marginleft = '-' + marginWidth + 'px';
   if(d == 1){
     dist = (Math.round((c.maxh - currh) / DDSPEED));

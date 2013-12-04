@@ -8,10 +8,10 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
   }
   $myQuery = 'UPDATE presentationQuestions
   SET question = "' . $_POST['question'] . '",
-  wrongAnswerOne = "' . $_POST['wrongAnswerOne'] .'",
-  wrongAnswerTwo = "' . $_POST['wrongAnswerTwo'] .'",
-  wrongAnswerThree = "' . $_POST['wrongAnswerThree'] .'",
-  correctAnswer = "' . $_POST['correctAnswer'] .'"
+  answerOne = "' . $_POST['answerOne'] .'",
+  answerTwo = "' . $_POST['answerTwo'] .'",
+  answerThree = "' . $_POST['answerThree'] .'",
+  answerFour = "' . $_POST['answerFour'] .'"
   WHERE questionId = ' . $_POST['questionId'];
   if(!empty($_POST['question']))
   {      

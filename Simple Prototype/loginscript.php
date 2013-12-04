@@ -68,29 +68,51 @@ if(strlen($token) == 40) {//test the length of the token; it should be 40 charac
   */
     $profile = $auth_info[profile];
     $email = $profile[email];
-    $identifier = $profile[identifier];
+    $identifier = $profile['identifier'];
     $identifier = trim($identifier,"https://www.google.com/profiles/");
-    $displayname = $profile[displayname];
+    $firstName = $profile['name']['givenName'];
+    $lastName = $profile['name']['familyName'];
+    $_SESSION['firstName'] = $firstName;
+    $_SESSION['identifier'] = $identifier;
+    $_SESSION['email'] = $email;
+    $_SESSION['lastName'] = $lastName;
+    $_SESSION['firstTime'] = "1";
+    
+    
+    
+    
+    $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
+
+    $userQuery = 'SELECT * FROM users WHERE accountid = "' . $_SESSION['identifier'] . '"';    
+    $user = mysqli_query($con,$userQuery);     
+    $user = mysqli_fetch_array($user);
+
+    if($user['trainingComplete'] == "1"){
+        $_SESSION['finishPresentation'] = "1";
+    }
+    else{
+        $_SESSION['finishPresentation'] = "0";
+    }
+    
+    
+    
     // DATABASE STUFF GOES HERE ===============================
   // Create connection
   $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outreach4!","steminfo");
+  $myQuery = 'SELECT * FROM users WHERE accountID = "' . $identifier .'"';
+  $query = 'UPDATE users
+  SET current = "1"
+  WHERE accountID = "' . $identifier .'"';
+  $currentUser = mysqli_query($con,$myQuery);
+  mysqli_query($con,$query);
+  $currentUser = mysqli_fetch_array($currentUser);
+  if($currentUser['accountid'] === NULL)
   // Check connection
-  if (mysqli_connect_errno($con))
   {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    header('Location: createAccount.php');
   }
-  mysqli_query($con,"INSERT IGNORE INTO users (accountid, email, accesslevel,testprogress,testscore,trainingprogress) VALUES ($identifier,'$email','Judge',0,0,0)");
-  $result = mysqli_query($con,"SELECT * FROM users WHERE email = '$email' ");
-  $row = mysqli_fetch_array($result);
-  
-  
-  $_SESSION['identifier'] = $identifier;
-  $_SESSION['email'] = $row['email'];
-  $_SESSION['accesslevel'] = $row['accesslevel'];
-  $_SESSION['testprogress'] = $row['testprogress'];
-  $_SESSION['testscore'] = $row['testscore'];
-  $_SESSION['trainingprogress'] = $row['trainingprogress'];
-  
+  $_SESSION['accesslevel'] = $currentUser['accesslevel'];
+
   
 
 

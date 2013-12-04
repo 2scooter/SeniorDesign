@@ -10,6 +10,7 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
   WHERE slidenumber = ' . $_POST['slideId'];
   $result = mysqli_query($con, $myQuery);
   $row = mysqli_fetch_array($result);
+  $currentModule = $row['moduleId'];
 	if($row['slidetype'] == "image")
 	{
 		$myQuery = 'DELETE FROM presentationImages WHERE imageId = ' . $row['imageId'];
@@ -27,5 +28,15 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
     }
     $myQuery = 'DELETE from presentation WHERE slidenumber = ' . $_POST['slideId'];
     mysqli_query($con,$myQuery);
+    $myQuery = 'SELECT * FROM presentation WHERE moduleId = ' . $currentModule . ' ORDER BY position ASC';
+    $currentSlide = mysqli_query($con,$myQuery);
+    $count = 1;
+    while($row = mysqli_fetch_array($currentSlide))
+    {
+        $myQuery = 'UPDATE presentation SET position = '.$count.' WHERE slidenumber = '.$row['slidenumber'];
+        mysqli_query($con,$myQuery);
+        $count++;
+    }
+    
 
 ?>

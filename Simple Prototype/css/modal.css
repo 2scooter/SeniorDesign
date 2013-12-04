@@ -1,5 +1,4 @@
 
-
 .modal.fade.in {
     top: 50%;
 }
@@ -17,8 +16,8 @@
     top: 50%;
     left: 50%;
     z-index: 1050;
-    width: 560px;
-    height: 450px;
+    width: 500px;
+    height: 560px;
     margin: -250px 0 0 -280px;
     background-color: #fff;
     border: 1px solid #999;

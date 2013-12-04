@@ -32,14 +32,19 @@ $row = mysqli_fetch_array($result);
     Question <br>
     <input type = "text" name = "question" size = "50" value = "' . $currentRow['question'] . '"><br>
     Correct Answer<br>
-    <input type = "text" name = "correctAnswer" size = "50" value = "' . $currentRow['correctAnswer'] . '"><br>
+    <input type = "text" name = "answerOne" size = "50" value = "' . $currentRow['answerOne'] . '"><br>
     Wrong Answer One<br>
-    <input type = "text" name = "wrongAnswerOne" size = "50" value = "' . $currentRow['wrongAnswerOne'] . '"><br>
+    <input type = "text" name = "answerTwo" size = "50" value = "' . $currentRow['answerTwo'] . '"><br>
     Wrong Answer Two<br>
-    <input type = "text" name = "wrongAnswerTwo" size = "50" value = "' . $currentRow['wrongAnswerTwo'] . '"><br>
+    <input type = "text" name = "answerThree" size = "50" value = "' . $currentRow['answerThree'] . '"><br>
     Wrong Answer Three<br>
-    <input type = "text" name = "wrongAnswerThree" size = "50" value = "' . $currentRow['wrongAnswerThree'] . '">
+    <input type = "text" name = "answerFour" size = "50" value = "' . $currentRow['answerFour'] . '">
     <input type="hidden" id="questionId" name="questionId" value = "' . $currentRow['questionId']. '" />
+    <br>
+    <input type = "radio" value="A" name="correctAnswer"'; if($currentRow['correctAnswer'] == "A") echo 'checked'; echo'
+    >A<input type = "radio" value="B" name="correctAnswer"'; if($currentRow['correctAnswer'] == "A") echo 'checked'; echo'>B<input type = "radio" value="B" name="correctAnswer"';
+    if($currentRow['correctAnswer'] == "C") echo 'checked'; echo'>C<input type = "radio" value="D" name="correctAnswer"'; if($currentRow['correctAnswer'] == "D") echo 'checked'; echo'>D
+                        
     </form>
     <br>
     <a id="questionSave" href="#" class="btn btn-primary">

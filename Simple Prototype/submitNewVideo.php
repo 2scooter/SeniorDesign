@@ -12,11 +12,17 @@ $con=mysqli_connect("steminfo.db.10915569.hostedresource.com","steminfo","Outrea
   $myQuery = 'SELECT * FROM presentationVideos WHERE videoURL = "' . $_POST['videoURL'] . '"';
   $result = mysqli_query($con, $myQuery);
   $row = mysqli_fetch_array($result);
-  $myQuery = 'SELECT * FROM presentation ORDER BY position DESC LIMIT 1';
-  $result = mysqli_query($con, $myQuery);
-  $positionRow = mysqli_fetch_array($result);
-  $value = $positionRow['position'] + 1;
-  $myQuery = 'INSERT INTO presentation(slidetype, videoId, position) 
-  VALUES ("video",' . $row['videoId'] . ',' . $value .')';
+  $myQuery = '
+  SELECT *  
+  FROM  `presentation` 
+  WHERE moduleId = '. $_POST['moduleId'] .'
+  ORDER BY  `position` DESC  
+  LIMIT 1
+  ';
+  $result = mysqli_query($con,$myQuery);
+  $highestPosition = mysqli_fetch_array($result);  
+  $value = $highestPosition['position'] + 1;
+  $myQuery = 'INSERT INTO presentation(slidetype, videoId, position, moduleId) 
+  VALUES ("video",' . $row['videoId'] . ',' . $value . ',' . $_POST['moduleId'] .')';
   mysqli_query($con,$myQuery);
 ?>

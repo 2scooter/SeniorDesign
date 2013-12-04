@@ -1,7 +1,26 @@
-$(document).ready(function() {
-    $.extend($.fn.dataTableExt.oStdClasses, {
-        "sWrapper": "dataTables_wrapper form-inline"
+$(document).ready(function() {    
+
+    
+    $('#clear-button').on('click', function() {
+        var r = confirm("This will clear the list of all judges for the year. Are you sure that you want to clear the list?");
+        if (r == true)
+          {
+            var url = "resetUsers.php"; // the script where you handle the form input.  
+            var formData = new FormData($("#uploadFileForm")[0]);           
+            $.ajax({
+                   type: "POST",           
+                   url: url
+             });
+ 
+            alert('Year reset');
+          }
+        else
+          {
+          x = "You pressed Cancel!";
+          }
     });
+    
+    
 
     $('#user-content').delegate('#removeButton', 'click', function() {
         var oTable = $('#user-content').dataTable();
@@ -17,32 +36,6 @@ $(document).ready(function() {
         $('#remove-modal').modal('show');
     });
 
-    $('#user-content').delegate('#metricClick', 'click', function() {
-        var row = $(this).closest('tr');
-        var eId = row.find('td:eq(1)').text();
-        var oTable = $('#user-content').dataTable();
-        var aPos = oTable.fnGetPosition($(this).parent().get(0))[1];
-        var head = $('#user-content thead th:eq(' + aPos + ')').text();
-        var metric = $(this).parent().text();
-        if(metric.charAt(0) == 'W' || metric.charAt(0) == 'E') {
-            metric = metric.substr(1);
-        }
-
-        $('#info-modal').find('.modal-header > h3').text(eId).end();
-        $('#info-modal').find('.modal-header > h5').text(head + " - " + metric).end();
-        $('#info-modal').find('.modal-body').text(this.align).end();
-        $('#info-modal').modal('show');
-        var link = document.getElementById("history-link");
-        link.style.visibility = 'visible';
-        if("Restored Consumers" == head) {
-            link.style.visibility='hidden';
-        }
-        link.setAttribute("href", "history.html?id=" + eId + "&metric=" + head);
-    });
-
-    $('#info-modal-close').on('click', function() {
-        $('#info-modal').modal('hide');
-    });
 
     $('#remove-button').on('click', function() {
 
@@ -54,222 +47,8 @@ $(document).ready(function() {
             oTable.fnDeleteRow(rowIndex);
         }
     });
-
-    $('#remove-modal-close').on('click', function() {
-        $('#remove-modal').modal('hide');
-    });
-
-    $('#message-modal-close').on('click', function() {
-        $('#message-modal').modal('hide');
-    });
-
-    $("#error-alert").hide();
-
-    var rowIndex;
-    var eId;
-    var eName;
-
-    var idCallback = function(memberDashboard, type) {
-        var metric = memberDashboard.metrics.restoredOutages;
-        if (metric === undefined) {
-            return "N/A";
-        }
-
-        if (type === "set") {
-            memberDashboard.restoredOutages_display = getMetricCellHtml($("<span/>", {
-                                        text: metric.result
-                                    }), metric);
-        } else if (type === "display") {
-            return memberDashboard.restoredOutages_display;
-        } else if (type === "sort") {
-            return metric.sortableResult;
-        } else {
-            return metric.result;
-        }
-    }
-
-    var nameCallback = function(memberDashboard, type) {
-        var metric = memberDashboard.metrics.restoredOutages;
-        if (metric === undefined) {
-            return "N/A";
-        }
-
-        if (type === "set") {
-            memberDashboard.restoredOutages_display = getMetricCellHtml($("<span/>", {
-                                        text: metric.result
-                                    }), metric);
-        } else if (type === "display") {
-            return memberDashboard.restoredOutages_display;
-        } else if (type === "sort") {
-            return metric.sortableResult;
-        } else {
-            return metric.result;
-        }
-    }
-
-    var progressCallback = function(memberDashboard, type) {
-        var metric = memberDashboard.metrics.restoredOutages;
-        if (metric === undefined) {
-            return "N/A";
-        }
-
-        if (type === "set") {
-            memberDashboard.restoredOutages_display = getMetricCellHtml($("<span/>", {
-                                        text: metric.result
-                                    }), metric);
-        } else if (type === "display") {
-            return memberDashboard.restoredOutages_display;
-        } else if (type === "sort") {
-            return metric.sortableResult;
-        } else {
-            return metric.result;
-        }
-    }
-
-    var certifiedCallback = function(memberDashboard, type) {
-        var metric = memberDashboard.metrics.restoredOutages;
-        if (metric === undefined) {
-            return "N/A";
-        }
-
-        if (type === "set") {
-            memberDashboard.restoredOutages_display = getMetricCellHtml($("<span/>", {
-                                        text: metric.result
-                                    }), metric);
-        } else if (type === "display") {
-            return memberDashboard.restoredOutages_display;
-        } else if (type === "sort") {
-            return metric.sortableResult;
-        } else {
-            return metric.result;
-        }
-    }
-
-    var swallowClick = function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-    };
-
-    var options = {
-        sDom: "<'row'<'span6'f>r>t",
-        sPaginationType: "bootstrap",
-        iDisplayLength: -1,
-        aoColumns: [
-            { sTitle: "ID" },
-            { sTitle: "Name" },
-            { sTitle: "Progress" },
-            { sTitle: "Certified" }
-        ],
-        aoColumnDefs: [
-            {
-                aTargets: [0],
-                mData: idCallback
-            },
-            {
-                aTargets: [1],
-                mData: nameCallback
-            },
-            {
-                aTargets: [2],
-                mData: progressCallback
-            },
-            {
-                aTargets: [3],
-                mData: certifiedCallback
-            }
-        ],
-        fnRowCallback: function(row, data, index) {
-            $(".oneoff-tooltip", row).tooltip().click(swallowClick);
-        }
-    };
-
-    $("#user-content").dataTable(options);
-
-    refreshDashboard();
 });
 
-function refreshDashboard() {
-    setTimeout(function() {
-        var errorDiv = $("#error-alert");
-
-        var minutes = 5;
-        var seconds = minutes * 60;
-        var millis  = seconds * 1000;
-
-        $.ajax("api/metrics/dashboard/oms", {
-            dataType: "json",
-            success: function(dashboard) {
-                errorDiv.hide();
-
-                processResults(dashboard);
-
-                setTimeout(refreshDashboard, millis);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                errorDiv.show();
-
-                setTimeout(refreshDashboard, millis);
-            }
-        });
-    }, 1)
-}
-
-/**
- * Clears and then re-populates the table.
- *
- * @param dashboard he dashboard object
- */
-function processResults(dashboard) {
-    var dataTable = $("#user-content").dataTable();
-    dataTable.fnClearTable();
-    dataTable.fnAddData(dashboard.memberDashboards);
-}
-
-/**
- * Takes a jQuery element and wraps it in a div along with a status label, if needed.  Returns the resulting raw HTML.
- *
- * @param element a jQuery element to wrap
- * @param metric the metric
- */
-function getMetricCellHtml(element, metric) {
-    var status = metric.status;
-    var color;
-    var message = metric.statusMessage;
-
-    if(status == "ERROR") {
-        color = "#f2dede";
-    } else if (status == "OUT_OF_DATE") {
-        color = "#E0E0E0";
-    } else if(status == "WARNING") {
-        color = "#fcf8e3";
-    } else if(status == "WEAK_WARNING") {
-        color = "#d9edf7";
-    } else if(status == "OK") {
-        color = "#dff0d8";
-    }
-
-    var div = $("<div id='metricClick' align='" + message + "' style='background-color:" + color + "'></div>", {
-        "class": getStatusClass(status)
-    }).append(getShortLabel(status).css("margin-right", "5px"));
-    div.append(element);
-
-    return div.wrap("<p/>").parent().html();
-}
-
-function removeId(eId, eName, message, userName) {
-    var path = "api/ignore/add/oms/" + eId + "/" + eName + "/" + message + "/" + userName;
-    $.ajax(path, {
-        type: "post",
-        success: function() {
-            $('#message-modal').find('.modal-header > h4').text("OMS").end();
-            $('#message-modal').find('.modal-body > h5').text("Removed "  + eId).end();
-            $('#message-modal').modal('show');
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            errorDiv.show();
-        }
-    });
-}
 
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -278,7 +57,42 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+
+
 (window.onpopstate = function () {
+    var cells = new Array();
+    var all = "name=";
+    var x = 0;
+    var rows = $("#user-content").dataTable().fnGetNodes();
+    var client = new XMLHttpRequest();
+    
+    
+    for(var i=0;i<rows.length;i++){
+        // Get HTML of 3rd column (for example)
+        if($(rows[i]).find("td:eq(4)").html() == "Pass"){
+            cells[x] = ($(rows[i]).find("td:eq(0)").html());
+            x++;
+        }
+    }
+    cells = cells.sort();
+    
+    for(var i = 0; i < cells.length; i++){
+        all = all + cells[i] + "\n";
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: 'saveFile.php',
+      data: all, //your data
+      success: function(data)
+      {
+          //document.getElementById("returnedData").innerHTML = data;          
+      }, //callback when ajax request finishes
+      dataType: 'text' //text/json...
+    });
+
+    //$.post('saveFile.php', {cells:cells}, function(){document.getElementById("user-content_wrapper").html = cells;});
+
     var match,
         pl     = /\+/g,  // Regex for replacing addition symbol with a space
         search = /([^&=]+)=?([^&]*)/g,

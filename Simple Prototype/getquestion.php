@@ -17,14 +17,23 @@ mysqli_close($con);
         <form id="oldQuestionForm">     
             <h5>Question:</h5>
             <input type="text" id="question" name="question" size="50" value = "'. $row['question'] . '"/>
-            <h5>Correct Answer:</h5>
-            <input type="text" id="correctAnswer" name="correctAnswer" size="50" value = "'. $row['correctAnswer'] . '"/>
-            <h5>Wrong Answer One:</h5>
-            <input type="text" id="wrongAnswerOne" name="wrongAnswerOne" size="50" value = "' . $row['wrongAnswerOne']. '"/>
-            <h5>Wrong Answer Two:</h5>
-             <input type="text" id="wrongAnswerTwo" name="wrongAnswerTwo" size="50" value = "' . $row['wrongAnswerTwo']. '"/>
-            <h5>Wrong Answer Three:</h5>
-             <input type="text" id="wrongAnswerThree" name="wrongAnswerThree" size="50" value = "' . $row['wrongAnswerThree']. '"/>   
+            <h5>Answer A:</h5>
+            <input type="text" id="answerOne" name="answerOne" size="50" value = "'. $row['answerOne'] . '"/>
+            <h5>Answer B:</h5>
+            <input type="text" id="answerTwo" name="answerTwo" size="50" value = "' . $row['answerTwo']. '"/>
+            <h5>Answer C:</h5>
+             <input type="text" id="answerThree" name="answerThree" size="50" value = "' . $row['answerThree']. '"/>
+            <h5>Answer D:</h5>
+             <input type="text" id="answerFour" name="answerFour" size="50" value = "' . $row['answerFour']. '"/>   
+            <br>
+            Correct Answer:
+            <input type = "radio" value="A" name="correctAnswer" ';
+            if($row['correctAnswer'] == "A") {echo 'checked';}; 
+            echo'>A<input type = "radio" value="B" name="correctAnswer" ';
+            if($row['correctAnswer'] == "B") {echo 'checked';}; 
+            echo'>B<input type="radio" value="C" name="correctAnswer" ';if($row['correctAnswer'] == "C") {echo 'checked';}; 
+            echo'>C<input type="radio" value="D" name="correctAnswer" ';if($row['correctAnswer'] == "D") {echo 'checked';}; 
+            echo'>D<input type="hidden" id="questionId" name="questionId" />
              <input type="hidden" id="questionId" name="questionId" value = "' . $row['questionId']. '" />
           </form> 
             <br>

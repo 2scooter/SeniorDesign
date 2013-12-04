@@ -17,13 +17,20 @@ $(document).ready(function() {
         email = row.find('td:eq(1)').text();
         phone = row.find("#phoneCell").val();
         address = row.find("#addressCell").val();
+        city = row.find("#cityCell").val();
+        state = row.find("#stateCell").val();
+        
         $('#info-modal').find('.modal-header > h3').text(name);
-        $('#info-modal').find('.modal-header > h4').text(level);
-//        $('#info-modal').find('.modal-header > h6').text("Account ID: " + row.attr('id')).end();
+        $('#typeText').text(level);
         $('#email').val(email);
         $('#accountid').val(row.attr('id'));
         $('#phone').val(phone);
         $('#address').val(address);
+        $('#City').val(city);
+        $('#State').val(state);
+        $('#stateText').text(state);
+        
+        
         $('#info-modal').modal('show');
     });
 
